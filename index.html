@@ -822,7 +822,7 @@
                 <li><a href="#gallery" onclick="closeMenu()">Gallery</a></li>
                 <li><a href="#events" onclick="closeMenu()">Events</a></li>
                 <li><a href="#register" onclick="closeMenu()">Register</a></li>
-                <li><a href="#" onclick="openPaymentsTracker(); closeMenu(); return false;">Payments</a></li>
+                <li><a href="#" onclick="event.preventDefault(); openPaymentsTrackerNow(); closeMenu();">Payments</a></li>
                 <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
             </ul>
         </div>
@@ -1309,12 +1309,18 @@
             }
         }
 
-        function openPaymentsTracker() {
-            document.getElementById('paymentsModal').classList.add('active');
-            document.body.style.overflow = 'hidden';
-            setTimeout(() => {
-                initPayments();
-            }, 100);
+        function openPaymentsTrackerNow() {
+            console.log('Opening payments tracker');
+            const modal = document.getElementById('paymentsModal');
+            if (modal) {
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                setTimeout(() => {
+                    initPayments();
+                }, 100);
+            } else {
+                console.error('Payments modal not found');
+            }
         }memberName: '',
                 month: '',
                 amount: '',
@@ -2001,7 +2007,7 @@
         }
 
         // Make functions globally accessible
-        window.openPaymentsTracker = openPaymentsTracker;
+        window.openPaymentsTrackerNow = openPaymentsTrackerNow;
         window.closePaymentsTracker = closePaymentsTracker;
         window.switchPaymentTab = switchPaymentTab;
         window.displayPayments = displayPayments;
