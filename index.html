@@ -460,6 +460,8 @@
             background: rgba(0,0,0,0.95);
             z-index: 3000;
             overflow-y: auto;
+            width: 100%;
+            height: 100%;
         }
 
         .payments-modal.active {
@@ -469,17 +471,18 @@
         .payments-modal-content {
             width: 100%;
             height: 100%;
+            position: relative;
         }
 
         .payments-close-btn {
             position: fixed;
-            top: 20px;
-            right: 30px;
+            top: 15px;
+            right: 15px;
             font-size: 40px;
             color: white;
             cursor: pointer;
             z-index: 3001;
-            background: rgba(0,0,0,0.5);
+            background: rgba(22, 101, 52, 0.9);
             width: 50px;
             height: 50px;
             border-radius: 50%;
@@ -487,10 +490,267 @@
             align-items: center;
             justify-content: center;
             transition: background 0.3s;
+            border: none;
+            padding: 0;
         }
 
         .payments-close-btn:hover {
-            background: rgba(0,0,0,0.8);
+            background: rgba(22, 101, 52, 1);
+        }
+
+        .payments-wrapper {
+            background: #f9fafb;
+            min-height: 100vh;
+            width: 100%;
+        }
+
+        .payments-header {
+            background: linear-gradient(135deg, #166534 0%, #22c55e 100%);
+            color: white;
+            padding: 1.5rem 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .payments-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .payments-nav button {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+
+        .payments-nav button.active {
+            background: white;
+            color: #166534;
+            font-weight: bold;
+        }
+
+        .payments-nav button:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        .payments-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.5rem 1rem;
+        }
+
+        .payments-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .payments-stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-left: 4px solid #166534;
+        }
+
+        .payments-stat-card h3 {
+            font-size: 0.875rem;
+            color: #6b7280;
+            margin-bottom: 0.5rem;
+        }
+
+        .payments-stat-card p {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #1f2937;
+        }
+
+        .payments-controls {
+            background: white;
+            padding: 1rem;
+            border-radius: 0.75rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .payments-controls input,
+        .payments-controls select {
+            padding: 0.75rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .payments-controls button {
+            background: #166534;
+            color: white;
+            border: none;
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .payments-controls button:hover {
+            background: #22c55e;
+        }
+
+        .payments-table {
+            background: white;
+            border-radius: 0.75rem;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow-x: auto;
+        }
+
+        .payments-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .payments-table th {
+            background: #166534;
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: bold;
+            font-size: 0.95rem;
+        }
+
+        .payments-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #e5e7eb;
+            font-size: 0.95rem;
+        }
+
+        .payments-table tr:hover {
+            background: #f9fafb;
+        }
+
+        .payments-table .amount {
+            color: #22c55e;
+            font-weight: bold;
+        }
+
+        .payments-table .delete-btn {
+            background: #dc2626;
+            color: white;
+            border: none;
+            padding: 0.5rem 0.75rem;
+            border-radius: 0.375rem;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: background 0.3s;
+        }
+
+        .payments-table .delete-btn:hover {
+            background: #991b1b;
+        }
+
+        .payments-form-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 3002;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .payments-form-modal.active {
+            display: flex;
+        }
+
+        .payments-form-modal-content {
+            background: white;
+            padding: 2rem 1.5rem;
+            border-radius: 0.75rem;
+            max-width: 500px;
+            width: 100%;
+            max-height: 95vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .payments-form-modal-content h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: #1f2937;
+        }
+
+        .payments-form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .payments-form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #374151;
+            font-size: 0.95rem;
+        }
+
+        .payments-form-group input,
+        .payments-form-group select,
+        .payments-form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.5rem;
+            font-size: 0.95rem;
+            font-family: inherit;
+        }
+
+        .payments-form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .payments-form-modal-content button {
+            width: 100%;
+            padding: 0.875rem;
+            background: #166534;
+            color: white;
+            border: none;
+            border-radius: 0.5rem;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-top: 1rem;
+        }
+
+        .payments-form-modal-content button:hover {
+            background: #22c55e;
+        }
+
+        .payments-form-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #6b7280;
         }
 
         .fade-in {
@@ -792,7 +1052,93 @@
 
     <div id="paymentsModal" class="payments-modal">
         <button class="payments-close-btn" onclick="closePaymentsTracker()">×</button>
-        <iframe id="paymentsFrame" src="about:blank" style="width: 100%; height: 100%; border: none;"></iframe>
+        <div class="payments-wrapper">
+            <div class="payments-header">
+                <h1>ASSA 2006 Payments Tracker</h1>
+                <div class="payments-nav">
+                    <button class="active" onclick="switchPaymentTab('dues', this)">Monthly Dues</button>
+                    <button onclick="switchPaymentTab('funeral', this)">Funeral/Marriage</button>
+                    <button onclick="switchPaymentTab('welfare', this)">General Welfare</button>
+                </div>
+            </div>
+
+            <div class="payments-container">
+                <div class="payments-stats">
+                    <div class="payments-stat-card">
+                        <h3>Total Collected</h3>
+                        <p id="totalCollected">₦0</p>
+                    </div>
+                    <div class="payments-stat-card">
+                        <h3>Total Contributors</h3>
+                        <p id="totalContributors">0</p>
+                    </div>
+                </div>
+
+                <div class="payments-controls">
+                    <input type="text" id="searchInput" placeholder="Search member name..." onkeyup="filterPayments()">
+                    <select id="sortSelect" onchange="filterPayments()">
+                        <option value="date">Sort by Date</option>
+                        <option value="amount">Sort by Amount</option>
+                        <option value="name">Sort by Name</option>
+                    </select>
+                    <button onclick="openAddForm()">+ Add Record</button>
+                </div>
+
+                <div class="payments-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Member Name</th>
+                                <th id="colLabel">Month/Period</th>
+                                <th>Amount</th>
+                                <th>Date</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="paymentsTableBody">
+                            <tr><td colspan="5" style="text-align: center; padding: 2rem;">No records found</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="paymentFormModal" class="payments-form-modal">
+        <div class="payments-form-modal-content">
+            <button class="payments-form-close" onclick="closeAddForm()">×</button>
+            <h2>Add Payment Record</h2>
+            <div class="payments-form-group">
+                <label>Member Name *</label>
+                <input type="text" id="formMemberName" placeholder="Enter member name">
+            </div>
+            <div class="payments-form-group" id="formMonthGroup">
+                <label>Month/Period *</label>
+                <input type="text" id="formMonth" placeholder="e.g., January 2025">
+            </div>
+            <div class="payments-form-group" id="formContributionGroup" style="display: none;">
+                <label>Contribution Description *</label>
+                <input type="text" id="formContribution" placeholder="e.g., Funeral, Marriage">
+            </div>
+            <div class="payments-form-group">
+                <label>Amount (₦) *</label>
+                <input type="number" id="formAmount" placeholder="Enter amount" min="0">
+            </div>
+            <div class="payments-form-group">
+                <label>Payment Date *</label>
+                <input type="date" id="formDate">
+            </div>
+            <div class="payments-form-group">
+                <label>Payment Method</label>
+                <select id="formMethod">
+                    <option value="Bank Transfer">Bank Transfer</option>
+                    <option value="Cash">Cash</option>
+                    <option value="Mobile Money">Mobile Money</option>
+                    <option value="Cheque">Cheque</option>
+                </select>
+            </div>
+            <button onclick="savePayment()">Save Record</button>
+        </div>
     </div>
 
     <footer>
@@ -800,180 +1146,176 @@
     </footer>
 
     <script>
-        function openPaymentsTracker() {
-            const modal = document.getElementById('paymentsModal');
-            modal.classList.add('active');
+        // Payments Tracker JavaScript Functions
+        let currentPaymentTab = 'dues';
+        let paymentsData = {
+            dues: [],
+            funeral: [],
+            welfare: []
+        };
+
+        function initPayments() {
+            const saved = localStorage.getItem('assaPaymentsData');
+            if (saved) {
+                paymentsData = JSON.parse(saved);
+            } else {
+                paymentsData = {
+                    dues: [
+                        { id: 1, memberName: 'Oghifo Matthew', month: 'January-December 2025', amount: 6000, paymentDate: '2025-01-01', paymentMethod: 'Bank Transfer' },
+                        { id: 2, memberName: 'Diemuodeke Erhuvwu', month: 'January-December 2025', amount: 6000, paymentDate: '2025-01-01', paymentMethod: 'Bank Transfer' },
+                        { id: 3, memberName: 'Sylvester Asore', month: 'January 2025-December 2026', amount: 12000, paymentDate: '2025-01-01', paymentMethod: 'Bank Transfer' }
+                    ],
+                    funeral: [
+                        { id: 1, memberName: 'Oghifo Matthew', contribution: 'Mr. Aghogho Owhonigho Mother Funeral', amount: 5000, paymentDate: '2025-01-15', paymentMethod: 'Bank Transfer' },
+                        { id: 2, memberName: 'Joseph Armstrong', contribution: 'Mr. Aghogho Owhonigho Mother Funeral', amount: 1000, paymentDate: '2025-01-15', paymentMethod: 'Bank Transfer' }
+                    ],
+                    welfare: []
+                };
+                savePaymentsData();
+            }
+            displayPayments();
+        }
+
+        function savePaymentsData() {
+            localStorage.setItem('assaPaymentsData', JSON.stringify(paymentsData));
+        }
+
+        function switchPaymentTab(tab, btn) {
+            currentPaymentTab = tab;
+            document.querySelectorAll('.payments-nav button').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
             
-            // Create the payments tracker HTML with improved responsive design
-            const paymentsHTML = `<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ASSA 2006 Set - Membership & Contributions</title>
-    <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"><\/script>
-    <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"><\/script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.5/babel.min.js"><\/script>
-    <script src="https://cdn.tailwindcss.com"><\/script>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        html, body {
-            height: 100%;
-            width: 100%;
+            const colLabel = document.getElementById('colLabel');
+            if (tab === 'dues') {
+                colLabel.textContent = 'Month/Period';
+            } else {
+                colLabel.textContent = 'Contribution';
+            }
+            
+            displayPayments();
         }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
-            overflow-x: hidden;
-        }
+        function displayPayments() {
+            const data = paymentsData[currentPaymentTab];
+            const tbody = document.getElementById('paymentsTableBody');
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const sortBy = document.getElementById('sortSelect').value;
 
-        .gradient-bg {
-            background: linear-gradient(135deg, #059669 0%, #047857 100%);
-        }
+            let filtered = data.filter(p => p.memberName.toLowerCase().includes(searchTerm));
 
-        .stat-card {
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
+            filtered.sort((a, b) => {
+                if (sortBy === 'date') return new Date(b.paymentDate) - new Date(a.paymentDate);
+                if (sortBy === 'amount') return b.amount - a.amount;
+                if (sortBy === 'name') return a.memberName.localeCompare(b.memberName);
+                return 0;
+            });
 
-        .stat-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-        }
-
-        .table-row:hover {
-            background-color: #f9fafb;
-        }
-
-        .modal-backdrop {
-            backdrop-filter: blur(4px);
-        }
-
-        .nav-link {
-            transition: all 0.3s ease;
-            display: inline-block;
-            padding: 0.5rem 1rem;
-        }
-
-        .nav-link.active {
-            border-bottom: 3px solid white;
-            color: white;
-        }
-
-        @media (max-width: 768px) {
-            .nav-link {
-                display: block;
-                padding: 0.75rem;
-                border-bottom: none;
-                border-left: 3px solid transparent;
+            if (filtered.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="5" style="text-align: center; padding: 2rem;">No records found</td></tr>';
+            } else {
+                tbody.innerHTML = filtered.map(p => `
+                    <tr>
+                        <td>${p.memberName}</td>
+                        <td>${currentPaymentTab === 'dues' ? p.month : p.contribution}</td>
+                        <td class="amount">₦${p.amount.toLocaleString()}</td>
+                        <td>${new Date(p.paymentDate).toLocaleDateString()}</td>
+                        <td><button class="delete-btn" onclick="deletePayment(${p.id}, '${currentPaymentTab}')">Delete</button></td>
+                    </tr>
+                `).join('');
             }
 
-            .nav-link.active {
-                border-bottom: none;
-                border-left: 3px solid white;
+            updateStats();
+        }
+
+        function updateStats() {
+            const data = paymentsData[currentPaymentTab];
+            const total = data.reduce((sum, p) => sum + p.amount, 0);
+            document.getElementById('totalCollected').textContent = '₦' + total.toLocaleString();
+            document.getElementById('totalContributors').textContent = data.length;
+        }
+
+        function filterPayments() {
+            displayPayments();
+        }
+
+        function openAddForm() {
+            document.getElementById('paymentFormModal').classList.add('active');
+            if (currentPaymentTab === 'dues') {
+                document.getElementById('formMonthGroup').style.display = 'block';
+                document.getElementById('formContributionGroup').style.display = 'none';
+            } else {
+                document.getElementById('formMonthGroup').style.display = 'none';
+                document.getElementById('formContributionGroup').style.display = 'block';
+            }
+            document.getElementById('formMemberName').focus();
+        }
+
+        function closeAddForm() {
+            document.getElementById('paymentFormModal').classList.remove('active');
+            document.getElementById('formMemberName').value = '';
+            document.getElementById('formMonth').value = '';
+            document.getElementById('formContribution').value = '';
+            document.getElementById('formAmount').value = '';
+            document.getElementById('formDate').value = '';
+        }
+
+        function savePayment() {
+            const memberName = document.getElementById('formMemberName').value.trim();
+            const amount = parseFloat(document.getElementById('formAmount').value);
+            const paymentDate = document.getElementById('formDate').value;
+            const paymentMethod = document.getElementById('formMethod').value;
+
+            if (!memberName || !amount || !paymentDate) {
+                alert('Please fill in all required fields');
+                return;
+            }
+
+            const newPayment = {
+                id: Date.now(),
+                memberName,
+                amount,
+                paymentDate,
+                paymentMethod
+            };
+
+            if (currentPaymentTab === 'dues') {
+                const month = document.getElementById('formMonth').value.trim();
+                if (!month) {
+                    alert('Please enter month/period');
+                    return;
+                }
+                newPayment.month = month;
+            } else {
+                const contribution = document.getElementById('formContribution').value.trim();
+                if (!contribution) {
+                    alert('Please enter contribution description');
+                    return;
+                }
+                newPayment.contribution = contribution;
+            }
+
+            paymentsData[currentPaymentTab].push(newPayment);
+            savePaymentsData();
+            displayPayments();
+            closeAddForm();
+            alert('Record added successfully!');
+        }
+
+        function deletePayment(id, tab) {
+            if (confirm('Delete this record?')) {
+                paymentsData[tab] = paymentsData[tab].filter(p => p.id !== id);
+                savePaymentsData();
+                displayPayments();
             }
         }
 
-        @media print {
-            .no-print {
-                display: none;
-            }
-        }
-    </style>
-</head>
-<body>
-    <div id="root"><\/div>
-
-    <script type="text/babel">
-        const { useState, useMemo, useEffect } = React;
-
-        const MenuIcon = () => (
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <line x1="3" y1="6" x2="21" y2="6"><\/line>
-                <line x1="3" y1="12" x2="21" y2="12"><\/line>
-                <line x1="3" y1="18" x2="21" y2="18"><\/line>
-            <\/svg>
-        );
-
-        const XIcon = ({ size = 24 }) => (
-            <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <line x1="18" y1="6" x2="6" y2="18"><\/line>
-                <line x1="6" y1="6" x2="18" y2="18"><\/line>
-            <\/svg>
-        );
-
-        const SearchIcon = () => (
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <circle cx="11" cy="11" r="8"><\/circle>
-                <path d="m21 21-4.35-4.35"><\/path>
-            <\/svg>
-        );
-
-        const PlusIcon = () => (
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <line x1="12" y1="5" x2="12" y2="19"><\/line>
-                <line x1="5" y1="12" x2="19" y2="12"><\/line>
-            <\/svg>
-        );
-
-        const DollarIcon = () => (
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <line x1="12" y1="1" x2="12" y2="23"><\/line>
-                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"><\/path>
-            <\/svg>
-        );
-
-        const UsersIcon = ({ size = 24 }) => (
-            <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"><\/path>
-                <circle cx="9" cy="7" r="4"><\/circle>
-                <path d="M23 21v-2a4 4 0 0 0-3-3.87"><\/path>
-                <path d="M16 3.13a4 4 0 0 1 0 7.75"><\/path>
-            <\/svg>
-        );
-
-        const AssaApp = () => {
-            const [currentPage, setCurrentPage] = useState('dues');
-            const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-            const [showForm, setShowForm] = useState(false);
-            const [searchTerm, setSearchTerm] = useState('');
-            const [sortBy, setSortBy] = useState('date');
-
-            const loadDuesPayments = () => {
-                const saved = localStorage.getItem('assaDuesPayments');
-                if (saved) return JSON.parse(saved);
-                return [
-                    { id: 1, memberName: 'Oghifo Matthew', month: 'January-December 2025', amount: 6000, paymentDate: '2025-01-01', paymentMethod: 'Bank Transfer' },
-                    { id: 2, memberName: 'Diemuodeke Erhuvwu', month: 'January-December 2025', amount: 6000, paymentDate: '2025-01-01', paymentMethod: 'Bank Transfer' },
-                    { id: 3, memberName: 'Sylvester Asore', month: 'January 2025-December 2026', amount: 12000, paymentDate: '2025-01-01', paymentMethod: 'Bank Transfer' }
-                ];
-            };
-
-            const loadFuneralPayments = () => {
-                const saved = localStorage.getItem('assaFuneralPayments');
-                if (saved) return JSON.parse(saved);
-                return [
-                    { id: 1, memberName: 'Oghifo Matthew', contribution: 'Mr. Aghogho Owhonigho Mother Funeral', amount: 5000, paymentDate: '2025-01-15', paymentMethod: 'Bank Transfer' },
-                    { id: 2, memberName: 'Joseph Armstrong', contribution: 'Mr. Aghogho Owhonigho Mother Funeral', amount: 1000, paymentDate: '2025-01-15', paymentMethod: 'Bank Transfer' }
-                ];
-            };
-
-            const loadWelfarePayments = () => {
-                const saved = localStorage.getItem('assaWelfarePayments');
-                if (saved) return JSON.parse(saved);
-                return [];
-            };
-
-            const [duesPayments, setDuesPayments] = useState(loadDuesPayments());
-            const [funeralPayments, setFuneralPayments] = useState(loadFuneralPayments());
-            const [welfarePayments, setWelfarePayments] = useState(loadWelfarePayments());
-
-            const [formData, setFormData] = useState({
-                memberName: '',
+        function openPaymentsTracker() {
+            document.getElementById('paymentsModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+            setTimeout(() => {
+                initPayments();
+            }, 100);
+        }memberName: '',
                 month: '',
                 amount: '',
                 paymentDate: '',
@@ -1654,14 +1996,20 @@
         }
 
         function closePaymentsTracker() {
-            const modal = document.getElementById('paymentsModal');
-            modal.classList.remove('active');
+            document.getElementById('paymentsModal').classList.remove('active');
             document.body.style.overflow = 'auto';
         }
 
-        // Make openPaymentsTracker globally accessible
+        // Make functions globally accessible
         window.openPaymentsTracker = openPaymentsTracker;
         window.closePaymentsTracker = closePaymentsTracker;
+        window.switchPaymentTab = switchPaymentTab;
+        window.displayPayments = displayPayments;
+        window.filterPayments = filterPayments;
+        window.openAddForm = openAddForm;
+        window.closeAddForm = closeAddForm;
+        window.savePayment = savePayment;
+        window.deletePayment = deletePayment;
         let currentGalleryIndex = 0;
         const galleryImages = [
             'https://i.imgur.com/RlLHVLK.jpg',
