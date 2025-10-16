@@ -562,7 +562,7 @@
                 <li><a href="#gallery" onclick="closeMenu()">Gallery</a></li>
                 <li><a href="#events" onclick="closeMenu()">Events</a></li>
                 <li><a href="#register" onclick="closeMenu()">Register</a></li>
-                <li><a href="javascript:void(0);" onclick="openPaymentsTracker(); closeMenu()">Payments</a></li>
+                <li><a href="#" onclick="openPaymentsTracker(); closeMenu(); return false;">Payments</a></li>
                 <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
             </ul>
         </div>
@@ -800,10 +800,8 @@
     </footer>
 
     <script>
-        // Payments Tracker Functions
         function openPaymentsTracker() {
             const modal = document.getElementById('paymentsModal');
-            const frame = document.getElementById('paymentsFrame');
             modal.classList.add('active');
             
             // Create the payments tracker HTML with improved responsive design
@@ -1661,7 +1659,9 @@
             document.body.style.overflow = 'auto';
         }
 
-        // Gallery modal functionality
+        // Make openPaymentsTracker globally accessible
+        window.openPaymentsTracker = openPaymentsTracker;
+        window.closePaymentsTracker = closePaymentsTracker;
         let currentGalleryIndex = 0;
         const galleryImages = [
             'https://i.imgur.com/RlLHVLK.jpg',
