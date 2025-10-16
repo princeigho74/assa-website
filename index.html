@@ -1,0 +1,1823 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASSA 2006 - Afiesere Secondary School Alumni</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #166534;
+            --primary-light: #22c55e;
+            --accent: #ffffff;
+            --accent-light: #f0fdf4;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(22, 101, 52, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo img {
+            width: 45px;
+            height: 45px;
+            border-radius: 5px;
+            border: 2px solid white;
+            object-fit: cover;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 4px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: white;
+            transition: 0.3s;
+        }
+
+        .nav-links.active {
+            display: flex;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-light);
+        }
+
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 50%, var(--accent) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.3);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            padding: 2rem;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            background: white;
+            color: var(--primary);
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 2rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: none;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .section {
+            padding: 5rem 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 3rem;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .about-card {
+            background: var(--accent-light);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(22, 101, 52, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .about-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(22, 101, 52, 0.2);
+        }
+
+        .about-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .committee-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .member-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .member-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .member-avatar {
+            width: 100px;
+            height: 130px;
+            background: var(--primary-light);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0 auto 1rem;
+            overflow: hidden;
+            border: 4px solid var(--primary);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .member-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .member-avatar .initials {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            background: var(--primary-light);
+        }
+
+        .member-role {
+            color: var(--primary);
+            font-weight: bold;
+            margin-top: 0.5rem;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .gallery-featured {
+            grid-column: span 2;
+            height: 350px;
+        }
+
+        @media (max-width: 768px) {
+            .gallery-featured {
+                grid-column: span 1;
+            }
+        }
+
+        .gallery-item {
+            height: 300px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            cursor: pointer;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05) rotate(1deg);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .gallery-modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            padding-top: 50px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+        }
+
+        .gallery-modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .gallery-modal-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90vh;
+            animation: slideIn 0.3s ease-in-out;
+        }
+
+        .gallery-modal img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .gallery-modal-close {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            font-size: 40px;
+            color: white;
+            cursor: pointer;
+            z-index: 2001;
+        }
+
+        .gallery-modal-close:hover {
+            color: #ccc;
+        }
+
+        .gallery-modal-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 30px;
+            color: white;
+            cursor: pointer;
+            padding: 20px;
+            user-select: none;
+        }
+
+        .gallery-modal-nav:hover {
+            color: #ccc;
+        }
+
+        .gallery-modal-prev {
+            left: 20px;
+        }
+
+        .gallery-modal-next {
+            right: 20px;
+        }
+
+        @keyframes slideIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .event-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border-left: 5px solid var(--primary);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .event-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .event-date {
+            background: var(--primary);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            display: inline-block;
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .contact-info {
+            background: var(--accent-light);
+            padding: 2rem;
+            border-radius: 15px;
+        }
+
+        .contact-info h3 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-info p {
+            margin-bottom: 1rem;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-family: inherit;
+        }
+
+        .contact-form button {
+            width: 100%;
+            padding: 1rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .contact-form button:hover {
+            background: var(--primary-light);
+        }
+
+        footer {
+            background: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .payments-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.95);
+            z-index: 3000;
+            overflow-y: auto;
+        }
+
+        .payments-modal.active {
+            display: block;
+        }
+
+        .payments-modal-content {
+            width: 100%;
+            height: 100%;
+        }
+
+        .payments-close-btn {
+            position: fixed;
+            top: 20px;
+            right: 30px;
+            font-size: 40px;
+            color: white;
+            cursor: pointer;
+            z-index: 3001;
+            background: rgba(0,0,0,0.5);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+        }
+
+        .payments-close-btn:hover {
+            background: rgba(0,0,0,0.8);
+        }
+
+        .fade-in {
+            animation: fadeIn 1s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes rainbow-text {
+            0% { color: #ff0000; text-shadow: 0 0 10px #ff0000; }
+            16% { color: #ff7f00; text-shadow: 0 0 10px #ff7f00; }
+            33% { color: #ffff00; text-shadow: 0 0 10px #ffff00; }
+            50% { color: #00ff00; text-shadow: 0 0 10px #00ff00; }
+            66% { color: #0000ff; text-shadow: 0 0 10px #0000ff; }
+            83% { color: #4b0082; text-shadow: 0 0 10px #4b0082; }
+            100% { color: #ff0000; text-shadow: 0 0 10px #ff0000; }
+        }
+
+        .rainbow-title {
+            animation: rainbow-text 4s ease-in-out infinite;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .contact-grid { grid-template-columns: 1fr; }
+            
+            .hamburger {
+                display: flex;
+            }
+            
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--primary);
+                flex-direction: column;
+                padding: 1rem 2rem;
+                display: none;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <img src="https://i.imgur.com/PbvLWnj.jpg" alt="ASSA Badge">
+                ASSA 2006
+            </div>
+            <div class="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home" onclick="closeMenu()">Home</a></li>
+                <li><a href="#about" onclick="closeMenu()">About</a></li>
+                <li><a href="#committee" onclick="closeMenu()">Executive</a></li>
+                <li><a href="#gallery" onclick="closeMenu()">Gallery</a></li>
+                <li><a href="#events" onclick="closeMenu()">Events</a></li>
+                <li><a href="#register" onclick="closeMenu()">Register</a></li>
+                <li><a href="javascript:void(0);" onclick="openPaymentsTracker(); closeMenu()">Payments</a></li>
+                <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <img src="https://i.imgur.com/PbvLWnj.jpg" alt="ASSA Badge" style="width: 120px; height: 140px; border-radius: 10px; margin: 0 auto 2rem; display: block; border: 5px solid white; box-shadow: 0 10px 30px rgba(0,0,0,0.3); object-fit: cover;">
+            <h1 class="fade-in rainbow-title">Afiesere Secondary School Alumni Association</h1>
+            <p class="fade-in" style="animation-delay: 0.2s;">Class of 2006 - ASSA</p>
+            <p class="fade-in" style="animation-delay: 0.4s; font-size: 1.2rem; margin-top: 1rem;">Building Legacies, Strengthening Bonds</p>
+            <a href="#register" class="cta-btn fade-in" style="animation-delay: 0.6s;">Join Our Database</a>
+        </div>
+    </section>
+
+    <section id="about" class="section">
+        <div class="container">
+            <h2 class="section-title">About ASSA</h2>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 3rem;">
+                The Afiesere Secondary School Alumni Association (ASSA), Class of 2006, is a vibrant community of former students dedicated to preserving our shared heritage, supporting current students, and fostering lifelong connections among classmates.
+            </p>
+            <div class="about-grid">
+                <div class="about-card">
+                    <h3>Our Mission</h3>
+                    <p>To foster unity, support educational excellence, and create meaningful opportunities for our members and the school community.</p>
+                </div>
+                <div class="about-card">
+                    <h3>Our Vision</h3>
+                    <p>To be a model alumni association that drives positive change and maintains lasting bonds among the Class of 2006.</p>
+                </div>
+                <div class="about-card">
+                    <h3>Our Values</h3>
+                    <p>Excellence, Unity, Integrity, Service, and Pride in our Afiesere Secondary School heritage.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="committee" class="section" style="background: var(--accent-light);">
+        <div class="container">
+            <h2 class="section-title">Executive Committee</h2>
+            <div class="committee-grid">
+                <div class="member-card">
+                    <div class="member-avatar">
+                        <img src="https://i.imgur.com/RipjCJ8.jpg" alt="PST Oghifo Matthew Emuejevoke" onload="this.style.display='block'" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=initials>PM</div>'">
+                    </div>
+                    <h3>PST Oghifo Matthew Emuejevoke</h3>
+                    <p class="member-role">Interim President</p>
+                </div>
+                <div class="member-card">
+                    <div class="member-avatar">
+                        <img src="https://i.imgur.com/kr4UiVy.jpg" alt="Obukohwo Endurance Judith" onload="this.style.display='block'" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=initials>OJ</div>'">
+                    </div>
+                    <h3>Obukohwo Endurance Judith</h3>
+                    <p class="member-role">Interim Treasurer</p>
+                </div>
+                <div class="member-card">
+                    <div class="member-avatar">
+                        <img src="https://i.imgur.com/xwVYy8J.jpg" alt="Emurotu O. Destiny" onload="this.style.display='block'" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=initials>ED</div>'">
+                    </div>
+                    <h3>Emurotu O. Destiny</h3>
+                    <p class="member-role">Interim Secretary</p>
+                </div>
+                <div class="member-card">
+                    <div class="member-avatar">
+                        <img src="https://i.imgur.com/oDr3swN.jpg" alt="Happy Igho Umukoro" onload="this.style.display='block'" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=initials>HU</div>'">
+                    </div>
+                    <h3>Happy Igho Umukoro</h3>
+                    <p class="member-role">Member</p>
+                </div>
+                <div class="member-card">
+                    <div class="member-avatar">
+                        <img src="https://i.imgur.com/9AgyTpe.jpg" alt="Sylvester Asore" onload="this.style.display='block'" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=initials>SA</div>'">
+                    </div>
+                    <h3>Sylvester Asore</h3>
+                    <p class="member-role">Member</p>
+                </div>
+                <div class="member-card">
+                    <div class="member-avatar">
+                        <img src="https://i.imgur.com/MM5b0Ly.jpg" alt="Diemuodeke Erhuvwu Kate" onload="this.style.display='block'" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=initials>DK</div>'">
+                    </div>
+                    <h3>Diemuodeke Erhuvwu Kate</h3>
+                    <p class="member-role">Member</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery" class="section">
+        <div class="container">
+            <h2 class="section-title">Photo Gallery</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="https://i.imgur.com/RlLHVLK.jpg" alt="ASSA Gallery Photo">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://i.imgur.com/wvp29GN.jpg" alt="ASSA Gallery Photo">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://i.imgur.com/X0YVzb9.jpg" alt="ASSA Gallery Photo">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://i.imgur.com/8kIddec.jpg" alt="ASSA Gallery Photo">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://i.imgur.com/OAAmGMs.jpg" alt="ASSA Gallery Photo">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://i.imgur.com/sqkMbem.jpg" alt="ASSA Gallery Photo">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://i.imgur.com/PEHORRg.jpg" alt="ASSA Gallery Photo">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://i.imgur.com/PR7YtN3.jpg" alt="ASSA Gallery Photo">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://i.imgur.com/RPilg2D.jpg" alt="ASSA Gallery Photo">
+                </div>
+                <div class="gallery-item gallery-featured" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; padding: 0.5rem; background: white; border-radius: 15px;">
+                    <img src="https://i.imgur.com/HiLEZte.jpg" alt="ASSA Gallery Photo" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                    <img src="https://i.imgur.com/HnNtpqc.jpg" alt="ASSA Gallery Photo" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                    <img src="https://i.imgur.com/LoCsyDu.jpg" alt="ASSA Gallery Photo" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="events" class="section" style="background: var(--accent-light);">
+        <div class="container">
+            <h2 class="section-title">Upcoming Events</h2>
+            <div class="events-grid">
+                <div class="event-card">
+                    <div class="event-date">Coming Soon</div>
+                    <h3>Annual General Meeting</h3>
+                    <p>Join us for our annual gathering to discuss association matters and reconnect with classmates.</p>
+                </div>
+                <div class="event-card">
+                    <div class="event-date">TBA</div>
+                    <h3>Fundraising Gala</h3>
+                    <p>Support our initiatives to give back to Afiesere Secondary School and our community.</p>
+                </div>
+                <div class="event-card">
+                    <div class="event-date">TBA</div>
+                    <h3>Class Reunion</h3>
+                    <p>Celebrate our journey together and create new memories with fellow alumni.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="register" class="section" style="background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary) 100%);">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">Member Registration</h2>
+            <p style="text-align: center; color: white; max-width: 700px; margin: 0 auto 2rem; font-size: 1.1rem;">
+                Join the official ASSA 2006 database! Register to stay connected with classmates and receive updates about events and initiatives.
+            </p>
+            <div style="max-width: 600px; margin: 0 auto; background: white; padding: 2.5rem; border-radius: 15px; box-shadow: 0 10px 40px rgba(0,0,0,0.2);">
+                <form id="registrationForm">
+                    <div style="margin-bottom: 1.5rem;">
+                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--primary);">Full Name *</label>
+                        <input type="text" required style="width: 100%; padding: 0.8rem; border: 2px solid #e5e7eb; border-radius: 8px; font-size: 1rem;">
+                    </div>
+                    <div style="margin-bottom: 1.5rem;">
+                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--primary);">Email Address *</label>
+                        <input type="email" required style="width: 100%; padding: 0.8rem; border: 2px solid #e5e7eb; border-radius: 8px; font-size: 1rem;">
+                    </div>
+                    <div style="margin-bottom: 1.5rem;">
+                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--primary);">Phone Number *</label>
+                        <input type="tel" required style="width: 100%; padding: 0.8rem; border: 2px solid #e5e7eb; border-radius: 8px; font-size: 1rem;">
+                    </div>
+                    <div style="margin-bottom: 1.5rem;">
+                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--primary);">Current Occupation</label>
+                        <input type="text" style="width: 100%; padding: 0.8rem; border: 2px solid #e5e7eb; border-radius: 8px; font-size: 1rem;">
+                    </div>
+                    <div style="margin-bottom: 1.5rem;">
+                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--primary);">Current Location (City, State)</label>
+                        <input type="text" style="width: 100%; padding: 0.8rem; border: 2px solid #e5e7eb; border-radius: 8px; font-size: 1rem;">
+                    </div>
+                    <div style="margin-bottom: 1.5rem;">
+                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--primary);">Year of Graduation</label>
+                        <input type="text" value="2006" readonly style="width: 100%; padding: 0.8rem; border: 2px solid #e5e7eb; border-radius: 8px; font-size: 1rem; background: #f9fafb;">
+                    </div>
+                    <div style="margin-bottom: 2rem;">
+                        <label style="display: flex; align-items: center; cursor: pointer;">
+                            <input type="checkbox" required style="width: 18px; height: 18px; margin-right: 0.5rem;">
+                            <span style="font-size: 0.95rem; color: #4b5563;">I confirm that I graduated from Afiesere Secondary School in 2006</span>
+                        </label>
+                    </div>
+                    <button type="submit" class="cta-btn" style="width: 100%; padding: 1rem; font-size: 1.1rem;">
+                        Submit Registration
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3>Contact Information</h3>
+                    <p><strong>Email:</strong> afiesereoldschool2006set@gmail.com</p>
+                    <p><strong>WhatsApp Group:</strong> <a href="https://chat.whatsapp.com/GXCNK0RhZA82Z0qN8DleP" target="_blank" style="color: var(--primary-light); text-decoration: underline;">Join Our Group</a></p>
+                    <h3 style="margin-top: 2rem;">Follow Us</h3>
+                    <p>Stay connected through our social media channels and WhatsApp group for the latest updates and alumni news.</p>
+                </div>
+                <form class="contact-form" id="contactForm">
+                    <input type="text" placeholder="Your Name" required>
+                    <input type="email" placeholder="Your Email" required>
+                    <textarea rows="5" placeholder="Your Message" required></textarea>
+                    <button type="submit">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <div id="galleryModal" class="gallery-modal">
+        <span class="gallery-modal-close" onclick="closeGalleryModal()">&times;</span>
+        <span class="gallery-modal-nav gallery-modal-prev" onclick="prevGalleryImage()">&#10094;</span>
+        <div class="gallery-modal-content">
+            <img id="galleryModalImage" src="" alt="Gallery Image">
+        </div>
+        <span class="gallery-modal-nav gallery-modal-next" onclick="nextGalleryImage()">&#10095;</span>
+    </div>
+
+    <div id="paymentsModal" class="payments-modal">
+        <button class="payments-close-btn" onclick="closePaymentsTracker()">×</button>
+        <iframe id="paymentsFrame" src="about:blank" style="width: 100%; height: 100%; border: none;"></iframe>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Afiesere Secondary School Alumni Association (ASSA) - Class of 2006. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Payments Tracker Functions
+        function openPaymentsTracker() {
+            const modal = document.getElementById('paymentsModal');
+            const frame = document.getElementById('paymentsFrame');
+            modal.classList.add('active');
+            
+            // Create the payments tracker HTML with improved responsive design
+            const paymentsHTML = `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASSA 2006 Set - Membership & Contributions</title>
+    <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"><\/script>
+    <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"><\/script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.5/babel.min.js"><\/script>
+    <script src="https://cdn.tailwindcss.com"><\/script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html, body {
+            height: 100%;
+            width: 100%;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #059669 0%, #047857 100%);
+        }
+
+        .stat-card {
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .table-row:hover {
+            background-color: #f9fafb;
+        }
+
+        .modal-backdrop {
+            backdrop-filter: blur(4px);
+        }
+
+        .nav-link {
+            transition: all 0.3s ease;
+            display: inline-block;
+            padding: 0.5rem 1rem;
+        }
+
+        .nav-link.active {
+            border-bottom: 3px solid white;
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .nav-link {
+                display: block;
+                padding: 0.75rem;
+                border-bottom: none;
+                border-left: 3px solid transparent;
+            }
+
+            .nav-link.active {
+                border-bottom: none;
+                border-left: 3px solid white;
+            }
+        }
+
+        @media print {
+            .no-print {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="root"><\/div>
+
+    <script type="text/babel">
+        const { useState, useMemo, useEffect } = React;
+
+        const MenuIcon = () => (
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <line x1="3" y1="6" x2="21" y2="6"><\/line>
+                <line x1="3" y1="12" x2="21" y2="12"><\/line>
+                <line x1="3" y1="18" x2="21" y2="18"><\/line>
+            <\/svg>
+        );
+
+        const XIcon = ({ size = 24 }) => (
+            <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <line x1="18" y1="6" x2="6" y2="18"><\/line>
+                <line x1="6" y1="6" x2="18" y2="18"><\/line>
+            <\/svg>
+        );
+
+        const SearchIcon = () => (
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <circle cx="11" cy="11" r="8"><\/circle>
+                <path d="m21 21-4.35-4.35"><\/path>
+            <\/svg>
+        );
+
+        const PlusIcon = () => (
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <line x1="12" y1="5" x2="12" y2="19"><\/line>
+                <line x1="5" y1="12" x2="19" y2="12"><\/line>
+            <\/svg>
+        );
+
+        const DollarIcon = () => (
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <line x1="12" y1="1" x2="12" y2="23"><\/line>
+                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"><\/path>
+            <\/svg>
+        );
+
+        const UsersIcon = ({ size = 24 }) => (
+            <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"><\/path>
+                <circle cx="9" cy="7" r="4"><\/circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"><\/path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"><\/path>
+            <\/svg>
+        );
+
+        const AssaApp = () => {
+            const [currentPage, setCurrentPage] = useState('dues');
+            const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+            const [showForm, setShowForm] = useState(false);
+            const [searchTerm, setSearchTerm] = useState('');
+            const [sortBy, setSortBy] = useState('date');
+
+            const loadDuesPayments = () => {
+                const saved = localStorage.getItem('assaDuesPayments');
+                if (saved) return JSON.parse(saved);
+                return [
+                    { id: 1, memberName: 'Oghifo Matthew', month: 'January-December 2025', amount: 6000, paymentDate: '2025-01-01', paymentMethod: 'Bank Transfer' },
+                    { id: 2, memberName: 'Diemuodeke Erhuvwu', month: 'January-December 2025', amount: 6000, paymentDate: '2025-01-01', paymentMethod: 'Bank Transfer' },
+                    { id: 3, memberName: 'Sylvester Asore', month: 'January 2025-December 2026', amount: 12000, paymentDate: '2025-01-01', paymentMethod: 'Bank Transfer' }
+                ];
+            };
+
+            const loadFuneralPayments = () => {
+                const saved = localStorage.getItem('assaFuneralPayments');
+                if (saved) return JSON.parse(saved);
+                return [
+                    { id: 1, memberName: 'Oghifo Matthew', contribution: 'Mr. Aghogho Owhonigho Mother Funeral', amount: 5000, paymentDate: '2025-01-15', paymentMethod: 'Bank Transfer' },
+                    { id: 2, memberName: 'Joseph Armstrong', contribution: 'Mr. Aghogho Owhonigho Mother Funeral', amount: 1000, paymentDate: '2025-01-15', paymentMethod: 'Bank Transfer' }
+                ];
+            };
+
+            const loadWelfarePayments = () => {
+                const saved = localStorage.getItem('assaWelfarePayments');
+                if (saved) return JSON.parse(saved);
+                return [];
+            };
+
+            const [duesPayments, setDuesPayments] = useState(loadDuesPayments());
+            const [funeralPayments, setFuneralPayments] = useState(loadFuneralPayments());
+            const [welfarePayments, setWelfarePayments] = useState(loadWelfarePayments());
+
+            const [formData, setFormData] = useState({
+                memberName: '',
+                month: '',
+                amount: '',
+                paymentDate: '',
+                paymentMethod: 'Bank Transfer',
+                contribution: ''
+            });
+
+            useEffect(() => {
+                localStorage.setItem('assaDuesPayments', JSON.stringify(duesPayments));
+            }, [duesPayments]);
+
+            useEffect(() => {
+                localStorage.setItem('assaFuneralPayments', JSON.stringify(funeralPayments));
+            }, [funeralPayments]);
+
+            useEffect(() => {
+                localStorage.setItem('assaWelfarePayments', JSON.stringify(welfarePayments));
+            }, [welfarePayments]);
+
+            const handleInputChange = (e) => {
+                setFormData({
+                    ...formData,
+                    [e.target.name]: e.target.value
+                });
+            };
+
+            const handleAddPayment = () => {
+                if (!formData.memberName || !formData.amount || !formData.paymentDate) {
+                    alert('Please fill in all required fields');
+                    return;
+                }
+
+                const newPayment = {
+                    id: Date.now(),
+                    ...formData,
+                    amount: parseFloat(formData.amount)
+                };
+
+                if (currentPage === 'dues') {
+                    if (!formData.month) {
+                        alert('Please enter month/period for dues');
+                        return;
+                    }
+                    setDuesPayments([...duesPayments, newPayment]);
+                } else if (currentPage === 'funeral') {
+                    if (!formData.contribution) {
+                        alert('Please enter contribution description');
+                        return;
+                    }
+                    setFuneralPayments([...funeralPayments, newPayment]);
+                } else if (currentPage === 'welfare') {
+                    if (!formData.contribution) {
+                        alert('Please enter contribution description');
+                        return;
+                    }
+                    setWelfarePayments([...welfarePayments, newPayment]);
+                }
+
+                setFormData({
+                    memberName: '',
+                    month: '',
+                    amount: '',
+                    paymentDate: '',
+                    paymentMethod: 'Bank Transfer',
+                    contribution: ''
+                });
+                setShowForm(false);
+            };
+
+            const deletePayment = (id, type) => {
+                if (confirm('Are you sure you want to delete this record?')) {
+                    if (type === 'dues') setDuesPayments(duesPayments.filter(p => p.id !== id));
+                    else if (type === 'funeral') setFuneralPayments(funeralPayments.filter(p => p.id !== id));
+                    else if (type === 'welfare') setWelfarePayments(welfarePayments.filter(p => p.id !== id));
+                }
+            };
+
+            const getFilteredAndSorted = (payments) => {
+                let filtered = payments.filter(p => 
+                    p.memberName.toLowerCase().includes(searchTerm.toLowerCase())
+                );
+
+                filtered.sort((a, b) => {
+                    if (sortBy === 'date') {
+                        return new Date(b.paymentDate) - new Date(a.paymentDate);
+                    } else if (sortBy === 'amount') {
+                        return b.amount - a.amount;
+                    } else if (sortBy === 'name') {
+                        return a.memberName.localeCompare(b.memberName);
+                    }
+                    return 0;
+                });
+
+                return filtered;
+            };
+
+            const getStats = (payments) => {
+                const totalAmount = payments.reduce((sum, p) => sum + p.amount, 0);
+                const totalContributors = payments.length;
+                return { totalAmount, totalContributors };
+            };
+
+            const renderPaymentTable = (payments, type) => {
+                const filtered = getFilteredAndSorted(payments);
+                return (
+                    <div className="bg-white rounded-xl shadow-md overflow-hidden">
+                        <div className="overflow-x-auto">
+                            <table className="w-full text-sm sm:text-base">
+                                <thead className="gradient-bg text-white">
+                                    <tr>
+                                        <th className="px-2 sm:px-6 py-3 text-left font-semibold">Member</th>
+                                        {type === 'dues' && <th className="px-2 sm:px-6 py-3 text-left font-semibold hidden sm:table-cell">Month/Period</th>}
+                                        {(type === 'funeral' || type === 'welfare') && <th className="px-2 sm:px-6 py-3 text-left font-semibold hidden sm:table-cell">Contribution</th>}
+                                        <th className="px-2 sm:px-6 py-3 text-left font-semibold">Amount</th>
+                                        <th className="no-print px-2 sm:px-6 py-3 text-left font-semibold">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody className="divide-y divide-gray-200">
+                                    {filtered.length === 0 ? (
+                                        <tr>
+                                            <td colSpan="5" className="px-6 py-12 text-center text-gray-500">
+                                                <p className="text-lg">No records found</p>
+                                            </td>
+                                        </tr>
+                                    ) : (
+                                        filtered.map((payment) => (
+                                            <tr key={payment.id} className="table-row">
+                                                <td className="px-2 sm:px-6 py-3 font-medium text-gray-900 text-xs sm:text-base">{payment.memberName}</td>
+                                                {type === 'dues' && <td className="px-2 sm:px-6 py-3 text-gray-600 hidden sm:table-cell text-xs sm:text-base">{payment.month}</td>}
+                                                {(type === 'funeral' || type === 'welfare') && <td className="px-2 sm:px-6 py-3 text-gray-600 hidden sm:table-cell text-xs sm:text-base">{payment.contribution}</td>}
+                                                <td className="px-2 sm:px-6 py-3 font-semibold text-green-600 text-xs sm:text-base">₦{payment.amount.toLocaleString()}</td>
+                                                <td className="no-print px-2 sm:px-6 py-3">
+                                                    <button
+                                                        onClick={() => deletePayment(payment.id, type)}
+                                                        className="text-red-600 hover:text-red-800 transition-colors"
+                                                    >
+                                                        <XIcon size={18} />
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        ))
+                                    )}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                );
+            };
+
+            const currentPayments = 
+                currentPage === 'dues' ? duesPayments :
+                currentPage === 'funeral' ? funeralPayments :
+                welfarePayments;
+
+            const stats = getStats(currentPayments);
+
+            return (
+                <div className="min-h-screen bg-gradient-to-br from-green-50 to-white">
+                    <div className="gradient-bg text-white shadow-lg sticky top-0 z-40">
+                        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-3 sm:py-4">
+                            <div className="flex items-center justify-between mb-3 sm:mb-0">
+                                <h1 className="text-lg sm:text-3xl font-bold">ASSA 2006</h1>
+                                <button
+                                    onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                                    className="sm:hidden text-white"
+                                >
+                                    {mobileMenuOpen ? <XIcon size={24} /> : <MenuIcon />}
+                                </button>
+                            </div>
+
+                            <div className={\'flex flex-col sm:flex-row gap-2 sm:gap-4 \${mobileMenuOpen ? "flex" : "hidden sm:flex"}\'}>
+                                <button
+                                    onClick={() => { setCurrentPage('dues'); setMobileMenuOpen(false); }}
+                                    className={\'nav-link px-3 py-2 rounded text-sm sm:text-base \${currentPage === "dues" ? "active bg-green-500 sm:bg-transparent" : "hover:bg-green-500"}\'}
+                                >
+                                    Monthly Dues
+                                </button>
+                                <button
+                                    onClick={() => { setCurrentPage('funeral'); setMobileMenuOpen(false); }}
+                                    className={\'nav-link px-3 py-2 rounded text-sm sm:text-base \${currentPage === "funeral" ? "active bg-green-500 sm:bg-transparent" : "hover:bg-green-500"}\'}
+                                >
+                                    Funeral/Marriage
+                                </button>
+                                <button
+                                    onClick={() => { setCurrentPage('welfare'); setMobileMenuOpen(false); }}
+                                    className={\'nav-link px-3 py-2 rounded text-sm sm:text-base \${currentPage === "welfare" ? "active bg-green-500 sm:bg-transparent" : "hover:bg-green-500"}\'}
+                                >
+                                    General Welfare
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-6 sm:py-8">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6 sm:mb-8">
+                            <div className="stat-card bg-white rounded-xl shadow-md p-4 sm:p-6 border-l-4 border-green-500">
+                                <div className="flex items-center justify-between">
+                                    <div>
+                                        <p className="text-gray-500 text-xs sm:text-sm font-medium">Total Collected</p>
+                                        <p className="text-lg sm:text-2xl font-bold text-gray-800 mt-1">₦{stats.totalAmount.toLocaleString()}<\/p>
+                                    </div>
+                                    <div className="bg-green-100 p-2 rounded-lg">
+                                        <div className="text-green-600"><DollarIcon /></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="stat-card bg-white rounded-xl shadow-md p-4 sm:p-6 border-l-4 border-blue-500">
+                                <div className="flex items-center justify-between">
+                                    <div>
+                                        <p className="text-gray-500 text-xs sm:text-sm font-medium">Contributors</p>
+                                        <p className="text-lg sm:text-2xl font-bold text-gray-800 mt-1">{stats.totalContributors}<\/p>
+                                    </div>
+                                    <div className="bg-blue-100 p-2 rounded-lg">
+                                        <div className="text-blue-600"><UsersIcon size={24} /></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="no-print bg-white rounded-xl shadow-md p-4 mb-6">
+                            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-4">
+                                <div className="relative">
+                                    <input
+                                        type="text"
+                                        placeholder="Search member..."
+                                        value={searchTerm}
+                                        onChange={(e) => setSearchTerm(e.target.value)}
+                                        className="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent text-sm"
+                                    />
+                                </div>
+
+                                <select
+                                    value={sortBy}
+                                    onChange={(e) => setSortBy(e.target.value)}
+                                    className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent text-sm"
+                                >
+                                    <option value="date">Sort by Date</option>
+                                    <option value="amount">Sort by Amount</option>
+                                    <option value="name">Sort by Name</option>
+                                </select>
+
+                                <button 
+                                    onClick={() => setShowForm(true)}
+                                    className="px-3 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors duration-200 flex items-center justify-center gap-2 text-sm font-medium"
+                                >
+                                    <PlusIcon />
+                                    Add Record
+                                </button>
+                            </div>
+                        </div>
+
+                        {renderPaymentTable(currentPayments, currentPage)}
+                    </div>
+
+                    {showForm && (
+                        <div className="fixed inset-0 bg-black bg-opacity-50 modal-backdrop flex items-center justify-center p-3 z-50">
+                            <div className="bg-white rounded-xl shadow-2xl max-w-md w-full p-5 sm:p-8 relative max-h-[95vh] overflow-y-auto">
+                                <button
+                                    onClick={() => setShowForm(false)}
+                                    className="absolute top-4 right-4 text-gray-400 hover:text-gray-600"
+                                >
+                                    <XIcon size={24} />
+                                </button>
+
+                                <h2 className="text-2xl font-bold text-gray-800 mb-6">Add New Record</h2>
+
+                                <div className="space-y-4">
+                                    <div>
+                                        <label className="block text-sm font-medium text-gray-700 mb-2">Member Name</label>
+                                        <input
+                                            type="text"
+                                            name="memberName"
+                                            value={formData.memberName}
+                                            onChange={handleInputChange}
+                                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent text-sm"
+                                            placeholder="Enter member name"
+                                        />
+                                    </div>
+
+                                    {currentPage === 'dues' && (
+                                        <div>
+                                            <label className="block text-sm font-medium text-gray-700 mb-2">Month/Period</label>
+                                            <input
+                                                type="text"
+                                                name="month"
+                                                value={formData.month}
+                                                onChange={handleInputChange}
+                                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent text-sm"
+                                                placeholder="e.g., January 2025"
+                                            />
+                                        </div>
+                                    )}
+
+                                    {(currentPage === 'funeral' || currentPage === 'welfare') && (
+                                        <div>
+                                            <label className="block text-sm font-medium text-gray-700 mb-2">Contribution Description</label>
+                                            <input
+                                                type="text"
+                                                name="contribution"
+                                                value={formData.contribution}
+                                                onChange={handleInputChange}
+                                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent text-sm"
+                                                placeholder="e.g., Funeral, Marriage"
+                                            />
+                                        </div>
+                                    )}
+
+                                    <div>
+                                        <label className="block text-sm font-medium text-gray-700 mb-2">Amount (₦)</label>
+                                        <input
+                                            type="number"
+                                            name="amount"
+                                            value={formData.amount}
+                                            onChange={handleInputChange}
+                                            min="0"
+                                            step="0.01"
+                                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent text-sm"
+                                            placeholder="Enter amount"
+                                        />
+                                    </div>
+
+                                    <div>
+                                        <label className="block text-sm font-medium text-gray-700 mb-2">Payment Date</label>
+                                        <input
+                                            type="date"
+                                            name="paymentDate"
+                                            value={formData.paymentDate}
+                                            onChange={handleInputChange}
+                                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent text-sm"
+                                        />
+                                    </div>
+
+                                    <div>
+                                        <label className="block text-sm font-medium text-gray-700 mb-2">Payment Method</label>
+                                        <select
+                                            name="paymentMethod"
+                                            value={formData.paymentMethod}
+                                            onChange={handleInputChange}
+                                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent text-sm"
+                                        >
+                                            <option value="Bank Transfer">Bank Transfer</option>
+                                            <option value="Cash">Cash</option>
+                                            <option value="Mobile Money">Mobile Money</option>
+                                            <option value="Cheque">Cheque</option>
+                                        </select>
+                                    </div>
+
+                                    <button
+                                        onClick={handleAddPayment}
+                                        className="w-full bg-green-600 text-white py-3 rounded-lg font-semibold hover:bg-green-700 transition-colors duration-200 mt-6 text-sm"
+                                    >
+                                        Add Record
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+
+                    <footer className="gradient-bg text-white mt-12">
+                        <div className="max-w-7xl mx-auto px-4 py-6 text-center">
+                            <p className="text-sm">&copy; 2025 ASSA 2006 Set. All rights reserved.</p>
+                        </div>
+                    </footer>
+                </div>
+            );
+        };
+
+        ReactDOM.render(<AssaApp />, document.getElementById('root'));
+    <\/script>
+</body>
+</html>`;size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <line x1="18" y1="6" x2="6" y2="18"><\/line>
+                <line x1="6" y1="6" x2="18" y2="18"><\/line>
+            <\/svg>
+        );
+
+        const SearchIcon = () => (
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <circle cx="11" cy="11" r="8"><\/circle>
+                <path d="m21 21-4.35-4.35"><\/path>
+            <\/svg>
+        );
+
+        const PlusIcon = () => (
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <line x1="12" y1="5" x2="12" y2="19"><\/line>
+                <line x1="5" y1="12" x2="19" y2="12"><\/line>
+            <\/svg>
+        );
+
+        const DollarIcon = () => (
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <line x1="12" y1="1" x2="12" y2="23"><\/line>
+                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"><\/path>
+            <\/svg>
+        );
+
+        const UsersIcon = ({ size = 24 }) => (
+            <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"><\/path>
+                <circle cx="9" cy="7" r="4"><\/circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"><\/path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"><\/path>
+            <\/svg>
+        );
+
+        const AssaApp = () => {
+            const [currentPage, setCurrentPage] = useState('dues');
+            const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+            const [showForm, setShowForm] = useState(false);
+            const [searchTerm, setSearchTerm] = useState('');
+            const [sortBy, setSortBy] = useState('date');
+
+            const loadDuesPayments = () => {
+                const saved = localStorage.getItem('assaDuesPayments');
+                if (saved) return JSON.parse(saved);
+                return [
+                    { id: 1, memberName: 'Oghifo Matthew', month: 'January-December 2025', amount: 6000, paymentDate: '2025-01-01', paymentMethod: 'Bank Transfer' },
+                    { id: 2, memberName: 'Diemuodeke Erhuvwu', month: 'January-December 2025', amount: 6000, paymentDate: '2025-01-01', paymentMethod: 'Bank Transfer' },
+                    { id: 3, memberName: 'Sylvester Asore', month: 'January 2025-December 2026', amount: 12000, paymentDate: '2025-01-01', paymentMethod: 'Bank Transfer' },
+                    { id: 4, memberName: 'Mr Inweh Andrew (President)', month: 'January-December 2025', amount: 6000, paymentDate: '2025-01-01', paymentMethod: 'Bank Transfer' },
+                    { id: 5, memberName: 'Rowena Erhinyodavwe', month: 'January-December (2 years)', amount: 6000, paymentDate: '2025-01-01', paymentMethod: 'Bank Transfer' }
+                ];
+            };
+
+            const loadFuneralPayments = () => {
+                const saved = localStorage.getItem('assaFuneralPayments');
+                if (saved) return JSON.parse(saved);
+                return [
+                    { id: 1, memberName: 'Oghifo Matthew', contribution: 'Mr. Aghogho Owhonigho Mother Funeral', amount: 5000, paymentDate: '2025-01-15', paymentMethod: 'Bank Transfer' },
+                    { id: 2, memberName: 'Joseph Armstrong', contribution: 'Mr. Aghogho Owhonigho Mother Funeral', amount: 1000, paymentDate: '2025-01-15', paymentMethod: 'Bank Transfer' }
+                ];
+            };
+
+            const loadWelfarePayments = () => {
+                const saved = localStorage.getItem('assaWelfarePayments');
+                if (saved) return JSON.parse(saved);
+                return [];
+            };
+
+            const [duesPayments, setDuesPayments] = useState(loadDuesPayments());
+            const [funeralPayments, setFuneralPayments] = useState(loadFuneralPayments());
+            const [welfarePayments, setWelfarePayments] = useState(loadWelfarePayments());
+
+            const [formData, setFormData] = useState({
+                memberName: '',
+                month: '',
+                amount: '',
+                paymentDate: '',
+                paymentMethod: 'Bank Transfer',
+                contribution: ''
+            });
+
+            useEffect(() => {
+                localStorage.setItem('assaDuesPayments', JSON.stringify(duesPayments));
+            }, [duesPayments]);
+
+            useEffect(() => {
+                localStorage.setItem('assaFuneralPayments', JSON.stringify(funeralPayments));
+            }, [funeralPayments]);
+
+            useEffect(() => {
+                localStorage.setItem('assaWelfarePayments', JSON.stringify(welfarePayments));
+            }, [welfarePayments]);
+
+            const handleInputChange = (e) => {
+                setFormData({
+                    ...formData,
+                    [e.target.name]: e.target.value
+                });
+            };
+
+            const handleAddPayment = () => {
+                if (!formData.memberName || !formData.amount || !formData.paymentDate) {
+                    alert('Please fill in all required fields');
+                    return;
+                }
+
+                const newPayment = {
+                    id: Date.now(),
+                    ...formData,
+                    amount: parseFloat(formData.amount)
+                };
+
+                if (currentPage === 'dues') {
+                    if (!formData.month) {
+                        alert('Please enter month/period for dues');
+                        return;
+                    }
+                    setDuesPayments([...duesPayments, newPayment]);
+                } else if (currentPage === 'funeral') {
+                    if (!formData.contribution) {
+                        alert('Please enter contribution description');
+                        return;
+                    }
+                    setFuneralPayments([...funeralPayments, newPayment]);
+                } else if (currentPage === 'welfare') {
+                    if (!formData.contribution) {
+                        alert('Please enter contribution description');
+                        return;
+                    }
+                    setWelfarePayments([...welfarePayments, newPayment]);
+                }
+
+                setFormData({
+                    memberName: '',
+                    month: '',
+                    amount: '',
+                    paymentDate: '',
+                    paymentMethod: 'Bank Transfer',
+                    contribution: ''
+                });
+                setShowForm(false);
+            };
+
+            const deletePayment = (id, type) => {
+                if (confirm('Are you sure you want to delete this record?')) {
+                    if (type === 'dues') setDuesPayments(duesPayments.filter(p => p.id !== id));
+                    else if (type === 'funeral') setFuneralPayments(funeralPayments.filter(p => p.id !== id));
+                    else if (type === 'welfare') setWelfarePayments(welfarePayments.filter(p => p.id !== id));
+                }
+            };
+
+            const getFilteredAndSorted = (payments) => {
+                let filtered = payments.filter(p => 
+                    p.memberName.toLowerCase().includes(searchTerm.toLowerCase())
+                );
+
+                filtered.sort((a, b) => {
+                    if (sortBy === 'date') {
+                        return new Date(b.paymentDate) - new Date(a.paymentDate);
+                    } else if (sortBy === 'amount') {
+                        return b.amount - a.amount;
+                    } else if (sortBy === 'name') {
+                        return a.memberName.localeCompare(b.memberName);
+                    }
+                    return 0;
+                });
+
+                return filtered;
+            };
+
+            const getStats = (payments) => {
+                const totalAmount = payments.reduce((sum, p) => sum + p.amount, 0);
+                const totalContributors = payments.length;
+                return { totalAmount, totalContributors };
+            };
+
+            const renderPaymentTable = (payments, type) => {
+                const filtered = getFilteredAndSorted(payments);
+                return (
+                    <div className="bg-white rounded-xl shadow-md overflow-hidden">
+                        <div className="overflow-x-auto">
+                            <table className="w-full">
+                                <thead className="gradient-bg text-white">
+                                    <tr>
+                                        <th className="px-4 md:px-6 py-4 text-left text-sm font-semibold">Member Name</th>
+                                        {type === 'dues' && <th className="px-4 md:px-6 py-4 text-left text-sm font-semibold">Month/Period</th>}
+                                        {(type === 'funeral' || type === 'welfare') && <th className="px-4 md:px-6 py-4 text-left text-sm font-semibold">Contribution</th>}
+                                        <th className="px-4 md:px-6 py-4 text-left text-sm font-semibold">Amount</th>
+                                        <th className="px-4 md:px-6 py-4 text-left text-sm font-semibold">Date</th>
+                                        <th className="no-print px-4 md:px-6 py-4 text-left text-sm font-semibold">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody className="divide-y divide-gray-200">
+                                    {filtered.length === 0 ? (
+                                        <tr>
+                                            <td colSpan="6" className="px-6 py-12 text-center text-gray-500">
+                                                <p className="text-lg">No records found</p>
+                                            </td>
+                                        </tr>
+                                    ) : (
+                                        filtered.map((payment) => (
+                                            <tr key={payment.id} className="table-row text-sm md:text-base">
+                                                <td className="px-4 md:px-6 py-4 font-medium text-gray-900">{payment.memberName}</td>
+                                                {type === 'dues' && <td className="px-4 md:px-6 py-4 text-gray-600">{payment.month}</td>}
+                                                {(type === 'funeral' || type === 'welfare') && <td className="px-4 md:px-6 py-4 text-gray-600">{payment.contribution}</td>}
+                                                <td className="px-4 md:px-6 py-4 font-semibold text-green-600">₦{payment.amount.toLocaleString()}</td>
+                                                <td className="px-4 md:px-6 py-4 text-gray-600">{new Date(payment.paymentDate).toLocaleDateString()}</td>
+                                                <td className="no-print px-4 md:px-6 py-4">
+                                                    <button
+                                                        onClick={() => deletePayment(payment.id, type)}
+                                                        className="text-red-600 hover:text-red-800 transition-colors"
+                                                    >
+                                                        <XIcon size={18} />
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        ))
+                                    )}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                );
+            };
+
+            const currentPayments = 
+                currentPage === 'dues' ? duesPayments :
+                currentPage === 'funeral' ? funeralPayments :
+                welfarePayments;
+
+            const stats = getStats(currentPayments);
+
+            return (
+                <div className="min-h-screen bg-gradient-to-br from-green-50 to-white">
+                    <div className="gradient-bg text-white shadow-lg sticky top-0 z-40">
+                        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+                            <h1 className="text-xl md:text-3xl font-bold">ASSA 2006 Payments</h1>
+                            <div className="flex gap-4 mt-4">
+                                <button onClick={() => setCurrentPage('dues')} className={\'px-4 py-2 rounded ${currentPage === "dues" ? "active border-b-2" : "hover:bg-green-500"}\'}>Monthly Dues<\/button>
+                                <button onClick={() => setCurrentPage('funeral')} className={\'px-4 py-2 rounded ${currentPage === "funeral" ? "active border-b-2" : "hover:bg-green-500"}\'}>Funeral/Marriage<\/button>
+                                <button onClick={() => setCurrentPage('welfare')} className={\'px-4 py-2 rounded ${currentPage === "welfare" ? "active border-b-2" : "hover:bg-green-500"}\'}>General Welfare<\/button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+                        <div className="grid grid-cols-2 md:grid-cols-2 gap-4 mb-8">
+                            <div className="stat-card bg-white rounded-xl shadow-md p-6 border-l-4 border-green-500">
+                                <div className="flex items-center justify-between">
+                                    <div>
+                                        <p className="text-gray-500 text-xs md:text-sm font-medium">Total Collected</p>
+                                        <p className="text-xl md:text-2xl font-bold text-gray-800 mt-1">₦{stats.totalAmount.toLocaleString()}<\/p>
+                                    </div>
+                                    <div className="bg-green-100 p-2 md:p-3 rounded-lg">
+                                        <div className="text-green-600"><DollarIcon /></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="stat-card bg-white rounded-xl shadow-md p-6 border-l-4 border-blue-500">
+                                <div className="flex items-center justify-between">
+                                    <div>
+                                        <p className="text-gray-500 text-xs md:text-sm font-medium">Contributors</p>
+                                        <p className="text-xl md:text-2xl font-bold text-gray-800 mt-1">{stats.totalContributors}<\/p>
+                                    </div>
+                                    <div className="bg-blue-100 p-2 md:p-3 rounded-lg">
+                                        <div className="text-blue-600"><UsersIcon size={24} /></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="no-print bg-white rounded-xl shadow-md p-4 md:p-6 mb-6">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div className="relative">
+                                    <input
+                                        type="text"
+                                        placeholder="Search member..."
+                                        value={searchTerm}
+                                        onChange={(e) => setSearchTerm(e.target.value)}
+                                        className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg"
+                                    />
+                                </div>
+                                <select value={sortBy} onChange={(e) => setSortBy(e.target.value)} className="px-4 py-2 border border-gray-300 rounded-lg">
+                                    <option value="date">Sort by Date</option>
+                                    <option value="amount">Sort by Amount</option>
+                                    <option value="name">Sort by Name</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        {renderPaymentTable(currentPayments, currentPage)}
+                    </div>
+                </div>
+            );
+        };
+
+        ReactDOM.render(<AssaApp />, document.getElementById('root'));
+    <\/script>
+</body>
+</html>`;
+
+            frame.srcdoc = paymentsHTML;
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closePaymentsTracker() {
+            const modal = document.getElementById('paymentsModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Gallery modal functionality
+        let currentGalleryIndex = 0;
+        const galleryImages = [
+            'https://i.imgur.com/RlLHVLK.jpg',
+            'https://i.imgur.com/wvp29GN.jpg',
+            'https://i.imgur.com/X0YVzb9.jpg',
+            'https://i.imgur.com/8kIddec.jpg',
+            'https://i.imgur.com/OAAmGMs.jpg',
+            'https://i.imgur.com/sqkMbem.jpg',
+            'https://i.imgur.com/PEHORRg.jpg',
+            'https://i.imgur.com/PR7YtN3.jpg',
+            'https://i.imgur.com/RPilg2D.jpg',
+            'https://i.imgur.com/HiLEZte.jpg',
+            'https://i.imgur.com/HnNtpqc.jpg',
+            'https://i.imgur.com/LoCsyDu.jpg'
+        ];
+
+        function openGalleryModal(index) {
+            currentGalleryIndex = index;
+            const modal = document.getElementById('galleryModal');
+            const img = document.getElementById('galleryModalImage');
+            img.src = galleryImages[currentGalleryIndex];
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeGalleryModal() {
+            const modal = document.getElementById('galleryModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function nextGalleryImage() {
+            currentGalleryIndex = (currentGalleryIndex + 1) % galleryImages.length;
+            document.getElementById('galleryModalImage').src = galleryImages[currentGalleryIndex];
+        }
+
+        function prevGalleryImage() {
+            currentGalleryIndex = (currentGalleryIndex - 1 + galleryImages.length) % galleryImages.length;
+            document.getElementById('galleryModalImage').src = galleryImages[currentGalleryIndex];
+        }
+
+        // Close modal on escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeGalleryModal();
+                closePaymentsTracker();
+            } else if (event.key === 'ArrowRight') {
+                nextGalleryImage();
+            } else if (event.key === 'ArrowLeft') {
+                prevGalleryImage();
+            }
+        });
+
+        // Add click handlers to gallery items
+        document.addEventListener('DOMContentLoaded', function() {
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            galleryItems.forEach((item, index) => {
+                item.style.cursor = 'pointer';
+                item.onclick = function(e) {
+                    e.stopPropagation();
+                    openGalleryModal(index);
+                };
+            });
+        });
+
+        // Hamburger menu and other functions
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+
+        function closeMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.remove('active');
+        }
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        }); 'ArrowRight') {
+                nextGalleryImage();
+            } else if (event.key === 'ArrowLeft') {
+                prevGalleryImage();
+            }
+        });
+
+        // Add click handlers to gallery items
+        document.addEventListener('DOMContentLoaded', function() {
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            galleryItems.forEach((item, index) => {
+                item.style.cursor = 'pointer';
+                item.onclick = function(e) {
+                    e.stopPropagation();
+                    openGalleryModal(index);
+                };
+            });
+        });
+
+        // Hamburger menu and other functions
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+
+        function closeMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.remove('active');
+        }
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        const registrationForm = document.getElementById('registrationForm');
+        registrationForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const data = {
+                fullName: registrationForm.elements[0].value,
+                email: registrationForm.elements[1].value,
+                phone: registrationForm.elements[2].value,
+                occupation: registrationForm.elements[3].value,
+                location: registrationForm.elements[4].value,
+                graduationYear: '2006',
+                timestamp: new Date().toISOString()
+            };
+
+            const existingData = JSON.parse(localStorage.getItem('assaRegistrations') || '[]');
+            existingData.push(data);
+            localStorage.setItem('assaRegistrations', JSON.stringify(existingData));
+
+            alert('Registration successful! Welcome to the ASSA 2006 database. You will receive updates via email and WhatsApp.');
+            registrationForm.reset();
+            
+            if(confirm('Would you like to join our WhatsApp group now?')) {
+                window.open('https://chat.whatsapp.com/GXCNK0RhZA82Z0qN8DleP', '_blank');
+            }
+        });
+
+        const contactForm = document.getElementById('contactForm');
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! We will get back to you soon.');
+            contactForm.reset();
+        });
+    </script>
+</body>
+</html>
