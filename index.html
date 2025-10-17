@@ -125,6 +125,17 @@
         .hero h1 {
             font-size: 3.5rem;
             margin-bottom: 1rem;
+            background: linear-gradient(90deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: rainbow 3s linear infinite;
+        }
+
+        @keyframes rainbow {
+            0% { background-position: 0% center; }
+            100% { background-position: 200% center; }
         }
 
         .hero p {
@@ -279,11 +290,51 @@
             transition: transform 0.3s, box-shadow 0.3s;
             box-shadow: 0 5px 20px rgba(0,0,0,0.1);
             cursor: pointer;
+            position: relative;
         }
 
         .gallery-item:hover {
             transform: scale(1.05) rotate(1deg);
             box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .gallery-modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            animation: fadeIn 0.3s;
+        }
+
+        .gallery-modal-content {
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 90vh;
+            top: 50%;
+            left: 50%;
+            position: absolute;
+            transform: translate(-50%, -50%);
+            object-fit: contain;
+        }
+
+        .gallery-close {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .gallery-close:hover {
+            color: var(--primary-light);
         }
 
         .gallery-item img {
@@ -384,21 +435,6 @@
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes rainbow-text {
-            0% { color: #ff0000; text-shadow: 0 0 10px #ff0000; }
-            16% { color: #ff7f00; text-shadow: 0 0 10px #ff7f00; }
-            33% { color: #ffff00; text-shadow: 0 0 10px #ffff00; }
-            50% { color: #00ff00; text-shadow: 0 0 10px #00ff00; }
-            66% { color: #0000ff; text-shadow: 0 0 10px #0000ff; }
-            83% { color: #4b0082; text-shadow: 0 0 10px #4b0082; }
-            100% { color: #ff0000; text-shadow: 0 0 10px #ff0000; }
-        }
-
-        .rainbow-title {
-            animation: rainbow-text 4s ease-in-out infinite;
-            font-weight: bold;
         }
 
         @media (max-width: 768px) {
@@ -666,9 +702,51 @@
 
     <footer>
         <p>&copy; 2024 Afiesere Secondary School Alumni Association (ASSA) - Class of 2006. All rights reserved.</p>
+        <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.9;">
+            Developed by <strong>CodeWave Dev.</strong> | 
+            <a href="mailto:smartxpress74@gmail.com" style="color: white; text-decoration: none;">smartxpress74@gmail.com</a> | 
+            <a href="tel:+2349020779297" style="color: white; text-decoration: none;">+234 902 077 9297</a>
+        </p>
     </footer>
 
+    <!-- Image Modal -->
+    <div id="imageModal" class="gallery-modal">
+        <span class="gallery-close" onclick="closeImageModal()">&times;</span>
+        <img class="gallery-modal-content" id="modalImage">
+    </div>
+
     <script>
+        // Image Modal Functions
+        function openImageModal(imgSrc) {
+            const modal = document.getElementById('imageModal');
+            const modalImage = document.getElementById('modalImage');
+            modalImage.src = imgSrc;
+            modal.style.display = 'block';
+        }
+
+        function closeImageModal() {
+            const modal = document.getElementById('imageModal');
+            modal.style.display = 'none';
+        }
+
+        // Close modal when clicking outside the image
+        window.onclick = function(event) {
+            const modal = document.getElementById('imageModal');
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        // Add click handlers to gallery images
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.gallery-item img').forEach(img => {
+                img.style.cursor = 'pointer';
+                img.addEventListener('click', function() {
+                    openImageModal(this.src);
+                });
+            });
+        });
+
         // Preload images with retry logic
         function loadImage(img) {
             const src = img.getAttribute('src');
