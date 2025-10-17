@@ -58,24 +58,12 @@
             border-radius: 5px;
             border: 2px solid white;
             object-fit: cover;
-            display: block;
         }
 
         .nav-links {
             display: flex;
             list-style: none;
             gap: 2rem;
-        }
-
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            transition: color 0.3s;
-            font-size: 0.95rem;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary-light);
         }
 
         .hamburger {
@@ -92,19 +80,30 @@
             transition: 0.3s;
         }
 
+        .nav-links.active {
+            display: flex;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-light);
+        }
+
         .hero {
-            margin-top: 80px;
-            min-height: 100vh;
+            height: 100vh;
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 50%, var(--accent) 100%);
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
             text-align: center;
             color: white;
             position: relative;
             overflow: hidden;
-            padding: 2rem;
         }
 
         .hero::before {
@@ -114,109 +113,47 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0,0,0,0.2);
+            background: rgba(0,0,0,0.3);
         }
 
         .hero-content {
             position: relative;
             z-index: 1;
-            max-width: 900px;
-        }
-
-        .hero-badge {
-            width: 120px;
-            height: 140px;
-            border-radius: 10px;
-            margin: 0 auto 2rem;
-            border: 5px solid white;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            object-fit: cover;
+            padding: 2rem;
         }
 
         .hero h1 {
-            font-size: clamp(1.8rem, 5vw, 3.5rem);
+            font-size: 3.5rem;
             margin-bottom: 1rem;
-            line-height: 1.2;
-        }
-
-        .rainbow-title {
-            animation: rainbow-text 4s ease-in-out infinite;
-            font-weight: bold;
-        }
-
-        @keyframes rainbow-text {
-            0% { color: #ff0000; text-shadow: 0 0 10px #ff0000; }
-            16% { color: #ff7f00; text-shadow: 0 0 10px #ff7f00; }
-            33% { color: #ffff00; text-shadow: 0 0 10px #ffff00; }
-            50% { color: #00ff00; text-shadow: 0 0 10px #00ff00; }
-            66% { color: #0000ff; text-shadow: 0 0 10px #0000ff; }
-            83% { color: #4b0082; text-shadow: 0 0 10px #4b0082; }
-            100% { color: #ff0000; text-shadow: 0 0 10px #ff0000; }
         }
 
         .hero p {
-            font-size: clamp(1rem, 2vw, 1.5rem);
-            margin: 1rem 0;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
         }
 
-        .hero-buttons {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            justify-content: center;
-            margin-top: 2rem;
-        }
-
-        .cta-btn, .secondary-btn {
-            padding: 0.75rem 2rem;
+        .cta-btn {
+            display: inline-block;
+            background: white;
+            color: var(--primary);
+            padding: 1rem 2.5rem;
             border-radius: 50px;
             text-decoration: none;
             font-weight: bold;
+            margin-top: 2rem;
             transition: transform 0.3s, box-shadow 0.3s;
             border: none;
             font-size: 1rem;
             cursor: pointer;
         }
 
-        .cta-btn {
-            background: white;
-            color: var(--primary);
-        }
-
-        .secondary-btn {
-            background: rgba(255,255,255,0.2);
-            color: white;
-            border: 2px solid white;
-        }
-
-        .cta-btn:hover, .secondary-btn:hover {
+        .cta-btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 10px 25px rgba(0,0,0,0.2);
         }
 
-        .mission-vision {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            margin-top: 3rem;
-            background: rgba(255,255,255,0.1);
-            padding: 2rem;
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
-        }
-
-        .mission-vision div h3 {
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-        }
-
-        .mission-vision div p {
-            font-size: 0.95rem;
-            line-height: 1.8;
-        }
-
         .section {
-            padding: 4rem 2rem;
+            padding: 5rem 2rem;
         }
 
         .container {
@@ -231,242 +168,107 @@
             margin-bottom: 3rem;
         }
 
-        .payments-container {
+        .about-grid {
             display: grid;
-            grid-template-columns: 1fr;
-            gap: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
         }
 
-        .payment-category {
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            overflow: hidden;
-        }
-
-        .payment-header {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-            color: white;
-            padding: 1.5rem;
-        }
-
-        .payment-header h3 {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .payment-controls {
-            padding: 1.5rem;
+        .about-card {
             background: var(--accent-light);
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 1rem;
-            border-bottom: 1px solid #e5e7eb;
-        }
-
-        .search-box, .date-filter, .add-btn {
-            padding: 0.75rem;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-size: 0.9rem;
-        }
-
-        .search-box, .date-filter {
-            border: 1px solid #ddd;
-        }
-
-        .add-btn {
-            background: var(--primary);
-            color: white;
-            cursor: pointer;
-            font-weight: bold;
-            transition: background 0.3s;
-        }
-
-        .add-btn:hover {
-            background: var(--primary-light);
-        }
-
-        .payments-table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        .payments-table thead {
-            background: var(--accent-light);
-        }
-
-        .payments-table th {
-            padding: 1rem;
-            text-align: left;
-            font-weight: 600;
-            color: var(--primary);
-            border-bottom: 2px solid var(--primary);
-        }
-
-        .payments-table td {
-            padding: 1rem;
-            border-bottom: 1px solid #e5e7eb;
-        }
-
-        .payments-table tbody tr:hover {
-            background: var(--accent-light);
-        }
-
-        .delete-btn {
-            background: #dc2626;
-            color: white;
-            border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background 0.3s;
-            font-size: 0.85rem;
-        }
-
-        .delete-btn:hover {
-            background: #991b1b;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-
-        .stat-card {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 10px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-            border-left: 4px solid var(--primary);
-        }
-
-        .stat-card p:first-child {
-            color: #666;
-            font-size: 0.9rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-card p:last-child {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: var(--primary);
-        }
-
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 2000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.5);
-            backdrop-filter: blur(4px);
-        }
-
-        .modal.active {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .modal-content {
-            background: white;
             padding: 2rem;
             border-radius: 15px;
-            max-width: 500px;
-            width: 90%;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            box-shadow: 0 5px 20px rgba(22, 101, 52, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
         }
 
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
+        .about-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(22, 101, 52, 0.2);
         }
 
-        .modal-header h2 {
+        .about-card h3 {
             color: var(--primary);
-            font-size: 1.5rem;
-        }
-
-        .close-btn {
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: #666;
-        }
-
-        .form-group {
             margin-bottom: 1rem;
         }
 
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-            color: var(--primary);
-            font-size: 0.9rem;
+        .committee-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
         }
 
-        .form-group input, .form-group select, .form-group textarea {
-            width: 100%;
-            padding: 0.75rem;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-family: inherit;
-            font-size: 0.9rem;
+        .member-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
         }
 
-        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 2px rgba(22, 101, 52, 0.1);
+        .member-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
         }
 
-        .form-buttons {
+        .member-avatar {
+            width: 100px;
+            height: 130px;
+            background: var(--primary-light);
+            border-radius: 10px;
             display: flex;
-            gap: 1rem;
-            margin-top: 1.5rem;
-        }
-
-        .form-buttons button {
-            flex: 1;
-            padding: 0.75rem;
-            border: none;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .submit-btn {
-            background: var(--primary);
+            align-items: center;
+            justify-content: center;
             color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0 auto 1rem;
+            overflow: hidden;
+            border: 4px solid var(--primary);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
 
-        .submit-btn:hover {
+        .member-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .member-avatar .initials {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
             background: var(--primary-light);
         }
 
-        .cancel-btn {
-            background: #e5e7eb;
-            color: #333;
-        }
-
-        .cancel-btn:hover {
-            background: #d1d5db;
+        .member-role {
+            color: var(--primary);
+            font-weight: bold;
+            margin-top: 0.5rem;
         }
 
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 1.5rem;
+        }
+
+        .gallery-featured {
+            grid-column: span 2;
+            height: 350px;
+        }
+
+        @media (max-width: 768px) {
+            .gallery-featured {
+                grid-column: span 1;
+            }
         }
 
         .gallery-item {
@@ -488,67 +290,84 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            display: block;
         }
 
-        .gallery-modal {
-            display: none;
-            position: fixed;
-            z-index: 2000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.9);
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
         }
 
-        .gallery-modal.active {
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .event-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border-left: 5px solid var(--primary);
+            transition: transform 0.3s, box-shadow 0.3s;
         }
 
-        .gallery-modal-content {
-            position: relative;
-            max-width: 90%;
-            max-height: 90vh;
+        .event-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
 
-        .gallery-modal img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-
-        .gallery-modal-close {
-            position: absolute;
-            top: 20px;
-            right: 40px;
-            font-size: 40px;
+        .event-date {
+            background: var(--primary);
             color: white;
-            cursor: pointer;
-            background: none;
-            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            display: inline-block;
+            margin-bottom: 1rem;
+            font-weight: bold;
         }
 
-        .gallery-modal-nav {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 30px;
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .contact-info {
+            background: var(--accent-light);
+            padding: 2rem;
+            border-radius: 15px;
+        }
+
+        .contact-info h3 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-info p {
+            margin-bottom: 1rem;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-family: inherit;
+        }
+
+        .contact-form button {
+            width: 100%;
+            padding: 1rem;
+            background: var(--primary);
             color: white;
-            cursor: pointer;
-            padding: 20px;
-            background: none;
             border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
         }
 
-        .gallery-modal-prev {
-            left: 20px;
-        }
-
-        .gallery-modal-next {
-            right: 20px;
+        .contact-form button:hover {
+            background: var(--primary-light);
         }
 
         footer {
@@ -556,25 +375,41 @@
             color: white;
             text-align: center;
             padding: 2rem;
-            margin-top: 4rem;
         }
 
-        .empty-state {
-            text-align: center;
-            padding: 3rem;
-            color: #666;
+        .fade-in {
+            animation: fadeIn 1s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes rainbow-text {
+            0% { color: #ff0000; text-shadow: 0 0 10px #ff0000; }
+            16% { color: #ff7f00; text-shadow: 0 0 10px #ff7f00; }
+            33% { color: #ffff00; text-shadow: 0 0 10px #ffff00; }
+            50% { color: #00ff00; text-shadow: 0 0 10px #00ff00; }
+            66% { color: #0000ff; text-shadow: 0 0 10px #0000ff; }
+            83% { color: #4b0082; text-shadow: 0 0 10px #4b0082; }
+            100% { color: #ff0000; text-shadow: 0 0 10px #ff0000; }
+        }
+
+        .rainbow-title {
+            animation: rainbow-text 4s ease-in-out infinite;
+            font-weight: bold;
         }
 
         @media (max-width: 768px) {
-            .hero h1 { font-size: 1.8rem; }
-            .nav-links { display: none; gap: 1rem; font-size: 0.9rem; }
+            .hero h1 { font-size: 2rem; }
+            .contact-grid { grid-template-columns: 1fr; }
             
             .hamburger {
                 display: flex;
             }
             
-            .nav-links.active {
-                display: flex;
+            .nav-links {
                 position: absolute;
                 top: 100%;
                 left: 0;
@@ -582,36 +417,12 @@
                 background: var(--primary);
                 flex-direction: column;
                 padding: 1rem 2rem;
+                display: none;
                 box-shadow: 0 5px 10px rgba(0,0,0,0.2);
             }
-
-            .mission-vision {
-                grid-template-columns: 1fr;
-            }
-
-            .payment-controls {
-                grid-template-columns: 1fr;
-            }
-
-            .payments-table {
-                font-size: 0.85rem;
-            }
-
-            .payments-table th, .payments-table td {
-                padding: 0.75rem 0.5rem;
-            }
-
-            .hero-buttons {
-                flex-direction: column;
-            }
-
-            .cta-btn, .secondary-btn {
-                width: 100%;
-            }
-
-            .modal-content {
-                width: 95%;
-                padding: 1.5rem;
+            
+            .nav-links.active {
+                display: flex;
             }
         }
     </style>
@@ -633,7 +444,8 @@
                 <li><a href="#about" onclick="closeMenu()">About</a></li>
                 <li><a href="#committee" onclick="closeMenu()">Executive</a></li>
                 <li><a href="#gallery" onclick="closeMenu()">Gallery</a></li>
-                <li><a href="#payments" onclick="closeMenu()">Payments</a></li>
+                <li><a href="#events" onclick="closeMenu()">Events</a></li>
+                <li><a href="#register" onclick="closeMenu()">Register</a></li>
                 <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
             </ul>
         </div>
@@ -641,399 +453,252 @@
 
     <section id="home" class="hero">
         <div class="hero-content">
-            <img src="https://i.imgur.com/PbvLWnj.jpg" alt="ASSA Badge" class="hero-badge">
-            <h1 class="rainbow-title">Afiesere Secondary School Alumni Association</h1>
-            <p style="font-size: 1.2rem; margin: 1rem 0;">Class of 2006 - ASSA</p>
-            <p>Building Legacies, Strengthening Bonds</p>
-            
-            <div class="mission-vision">
-                <div>
-                    <h3>🎯 Our Mission</h3>
-                    <p>To foster unity, support educational excellence, and create meaningful opportunities for our members and the school community while preserving the bonds formed during our school days.</p>
-                </div>
-                <div>
-                    <h3>🌟 Our Vision</h3>
-                    <p>To be a model alumni association that drives positive change, maintains lasting connections, and makes a lasting impact on our alma mater and society.</p>
-                </div>
-            </div>
-
-            <div class="hero-buttons">
-                <a href="#payments" class="cta-btn">View Contributions</a>
-                <a href="#contact" class="secondary-btn">Join Our Database</a>
-            </div>
+            <img src="https://i.imgur.com/PbvLWnj.jpg" alt="ASSA Badge" style="width: 120px; height: 140px; border-radius: 10px; margin: 0 auto 2rem; display: block; border: 5px solid white; box-shadow: 0 10px 30px rgba(0,0,0,0.3); object-fit: cover;">
+            <h1 class="fade-in">Afiesere Secondary School Alumni Association</h1>
+            <p class="fade-in" style="animation-delay: 0.2s;">Class of 2006 - ASSA</p>
+            <p class="fade-in" style="animation-delay: 0.4s; font-size: 1.2rem; margin-top: 1rem;">Building Legacies, Strengthening Bonds</p>
+            <a href="#register" class="cta-btn fade-in" style="animation-delay: 0.6s;">Join Our Database</a>
         </div>
     </section>
 
-    <section id="payments" class="section" style="background: var(--accent-light);">
+    <section id="about" class="section">
         <div class="container">
-            <h2 class="section-title">Contributions & Payments</h2>
-            
-            <div class="payments-container">
-                <!-- Monthly Dues -->
-                <div class="payment-category">
-                    <div class="payment-header">
-                        <h3>📅 Monthly Dues</h3>
-                        <p>Regular membership contributions</p>
-                    </div>
-                    
-                    <div class="stats-grid" style="padding: 1.5rem;">
-                        <div class="stat-card">
-                            <p>Total Collected</p>
-                            <p id="duesTotal">₦62,000</p>
-                        </div>
-                        <div class="stat-card">
-                            <p>Contributors</p>
-                            <p id="duesCount">10</p>
-                        </div>
-                    </div>
-
-                    <div class="payment-controls">
-                        <input type="text" class="search-box" id="duesSearch" placeholder="Search member...">
-                        <input type="date" class="date-filter" id="duesDate">
-                        <button class="add-btn" onclick="openModal('dues')">+ Add Record</button>
-                    </div>
-
-                    <div style="overflow-x: auto;">
-                        <table class="payments-table">
-                            <thead>
-                                <tr>
-                                    <th>Member Name</th>
-                                    <th>Month/Period</th>
-                                    <th>Amount</th>
-                                    <th>Date</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody id="duesBody">
-                                <tr><td colspan="5" class="empty-state">No records yet</td></tr>
-                            </tbody>
-                        </table>
-                    </div>
+            <h2 class="section-title">About ASSA</h2>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 3rem;">
+                The Afiesere Secondary School Alumni Association (ASSA), Class of 2006, is a vibrant community of former students dedicated to preserving our shared heritage, supporting current students, and fostering lifelong connections among classmates.
+            </p>
+            <div class="about-grid">
+                <div class="about-card">
+                    <h3>Our Mission</h3>
+                    <p>To foster unity, support educational excellence, and create meaningful opportunities for our members and the school community.</p>
                 </div>
-
-                <!-- Funeral/Marriage -->
-                <div class="payment-category">
-                    <div class="payment-header">
-                        <h3>💐 Funeral & Marriage Contributions</h3>
-                        <p>Special event support fund</p>
-                    </div>
-                    
-                    <div class="stats-grid" style="padding: 1.5rem;">
-                        <div class="stat-card">
-                            <p>Total Collected</p>
-                            <p id="funeralTotal">₦31,000</p>
-                        </div>
-                        <div class="stat-card">
-                            <p>Contributors</p>
-                            <p id="funeralCount">9</p>
-                        </div>
-                    </div>
-
-                    <div class="payment-controls">
-                        <input type="text" class="search-box" id="funeralSearch" placeholder="Search member...">
-                        <input type="date" class="date-filter" id="funeralDate">
-                        <button class="add-btn" onclick="openModal('funeral')">+ Add Record</button>
-                    </div>
-
-                    <div style="overflow-x: auto;">
-                        <table class="payments-table">
-                            <thead>
-                                <tr>
-                                    <th>Member Name</th>
-                                    <th>Contribution</th>
-                                    <th>Amount</th>
-                                    <th>Date</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody id="funeralBody">
-                                <tr><td colspan="5" class="empty-state">No records yet</td></tr>
-                            </tbody>
-                        </table>
-                    </div>
+                <div class="about-card">
+                    <h3>Our Vision</h3>
+                    <p>To be a model alumni association that drives positive change and maintains lasting bonds among the Class of 2006.</p>
                 </div>
-
-                <!-- Welfare -->
-                <div class="payment-category">
-                    <div class="payment-header">
-                        <h3>❤️ General Welfare Donations</h3>
-                        <p>Community support and relief fund</p>
-                    </div>
-                    
-                    <div class="stats-grid" style="padding: 1.5rem;">
-                        <div class="stat-card">
-                            <p>Total Collected</p>
-                            <p id="welfareTotal">₦0</p>
-                        </div>
-                        <div class="stat-card">
-                            <p>Contributors</p>
-                            <p id="welfareCount">0</p>
-                        </div>
-                    </div>
-
-                    <div class="payment-controls">
-                        <input type="text" class="search-box" id="welfareSearch" placeholder="Search member...">
-                        <input type="date" class="date-filter" id="welfareDate">
-                        <button class="add-btn" onclick="openModal('welfare')">+ Add Record</button>
-                    </div>
-
-                    <div style="overflow-x: auto;">
-                        <table class="payments-table">
-                            <thead>
-                                <tr>
-                                    <th>Member Name</th>
-                                    <th>Description</th>
-                                    <th>Amount</th>
-                                    <th>Date</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody id="welfareBody">
-                                <tr><td colspan="5" class="empty-state">No records yet</td></tr>
-                            </tbody>
-                        </table>
-                    </div>
+                <div class="about-card">
+                    <h3>Our Values</h3>
+                    <p>Excellence, Unity, Integrity, Service, and Pride in our Afiesere Secondary School heritage.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Add Record Modal -->
-    <div id="recordModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 id="modalTitle">Add Record</h2>
-                <button class="close-btn" onclick="closeModal()">&times;</button>
+    <section id="committee" class="section" style="background: var(--accent-light);">
+        <div class="container">
+            <h2 class="section-title">Executive Committee</h2>
+            <div class="committee-grid">
+                <div class="member-card">
+                    <div class="member-avatar">
+                        <img src="https://i.imgur.com/RipjCJ8.jpg" alt="PST Oghifo Matthew Emuejevoke" onload="this.style.display='block'" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=initials>PM</div>'">
+                    </div>
+                    <h3>PST Oghifo Matthew Emuejevoke</h3>
+                    <p class="member-role">Interim President</p>
+                </div>
+                <div class="member-card">
+                    <div class="member-avatar">
+                        <img src="https://i.imgur.com/kr4UiVy.jpg" alt="Obukohwo Endurance Judith" onload="this.style.display='block'" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=initials>OJ</div>'">
+                    </div>
+                    <h3>Obukohwo Endurance Judith</h3>
+                    <p class="member-role">Interim Treasurer</p>
+                </div>
+                <div class="member-card">
+                    <div class="member-avatar">
+                        <img src="https://i.imgur.com/xwVYy8J.jpg" alt="Emurotu O. Destiny" onload="this.style.display='block'" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=initials>ED</div>'">
+                    </div>
+                    <h3>Emurotu O. Destiny</h3>
+                    <p class="member-role">Interim Secretary</p>
+                </div>
+                <div class="member-card">
+                    <div class="member-avatar">
+                        <img src="https://i.imgur.com/oDr3swN.jpg" alt="Happy Igho Umukoro" onload="this.style.display='block'" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=initials>HU</div>'">
+                    </div>
+                    <h3>Happy Igho Umukoro</h3>
+                    <p class="member-role">Member</p>
+                </div>
+                <div class="member-card">
+                    <div class="member-avatar">
+                        <img src="https://i.imgur.com/9AgyTpe.jpg" alt="Sylvester Asore" onload="this.style.display='block'" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=initials>SA</div>'">
+                    </div>
+                    <h3>Sylvester Asore</h3>
+                    <p class="member-role">Member</p>
+                </div>
+                <div class="member-card">
+                    <div class="member-avatar">
+                        <img src="https://i.imgur.com/MM5b0Ly.jpg" alt="Diemuodeke Erhuvwu Kate" onload="this.style.display='block'" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=initials>DK</div>'">
+                    </div>
+                    <h3>Diemuodeke Erhuvwu Kate</h3>
+                    <p class="member-role">Member</p>
+                </div>
             </div>
-            <form id="recordForm" onsubmit="handleAddRecord(event)">
-                <div class="form-group">
-                    <label>Member Name *</label>
-                    <input type="text" id="memberName" required>
-                </div>
-                <div class="form-group" id="monthGroup">
-                    <label>Month/Period *</label>
-                    <input type="text" id="month" placeholder="e.g., January 2025">
-                </div>
-                <div class="form-group" id="contributionGroup" style="display: none;">
-                    <label>Contribution Description *</label>
-                    <input type="text" id="contribution" placeholder="e.g., Funeral, Marriage, Relief">
-                </div>
-                <div class="form-group">
-                    <label>Amount (₦) *</label>
-                    <input type="number" id="amount" min="0" step="0.01" required>
-                </div>
-                <div class="form-group">
-                    <label>Payment Date *</label>
-                    <input type="date" id="paymentDate" required>
-                </div>
-                <div class="form-buttons">
-                    <button type="submit" class="submit-btn">Add Record</button>
-                    <button type="button" class="cancel-btn" onclick="closeModal()">Cancel</button>
-                </div>
-            </form>
         </div>
-    </div>
+    </section>
+
+    <section id="gallery" class="section">
+        <div class="container">
+            <h2 class="section-title">Photo Gallery</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="https://i.imgur.com/RlLHVLK.jpg" alt="ASSA Gallery Photo">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://i.imgur.com/wvp29GN.jpg" alt="ASSA Gallery Photo">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://i.imgur.com/X0YVzb9.jpg" alt="ASSA Gallery Photo">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://i.imgur.com/8kIddec.jpg" alt="ASSA Gallery Photo">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://i.imgur.com/OAAmGMs.jpg" alt="ASSA Gallery Photo">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://i.imgur.com/sqkMbem.jpg" alt="ASSA Gallery Photo">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://i.imgur.com/PEHORRg.jpg" alt="ASSA Gallery Photo">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://i.imgur.com/PR7YtN3.jpg" alt="ASSA Gallery Photo">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://i.imgur.com/RPilg2D.jpg" alt="ASSA Gallery Photo">
+                </div>
+                <div class="gallery-item gallery-featured" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; padding: 0.5rem; background: white; border-radius: 15px;">
+                    <img src="https://i.imgur.com/HiLEZte.jpg" alt="ASSA Gallery Photo" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                    <img src="https://i.imgur.com/HnNtpqc.jpg" alt="ASSA Gallery Photo" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                    <img src="https://i.imgur.com/LoCsyDu.jpg" alt="ASSA Gallery Photo" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="events" class="section" style="background: var(--accent-light);">
+        <div class="container">
+            <h2 class="section-title">Upcoming Events</h2>
+            <div class="events-grid">
+                <div class="event-card">
+                    <div class="event-date">Coming Soon</div>
+                    <h3>Annual General Meeting</h3>
+                    <p>Join us for our annual gathering to discuss association matters and reconnect with classmates.</p>
+                </div>
+                <div class="event-card">
+                    <div class="event-date">TBA</div>
+                    <h3>Fundraising Gala</h3>
+                    <p>Support our initiatives to give back to Afiesere Secondary School and our community.</p>
+                </div>
+                <div class="event-card">
+                    <div class="event-date">TBA</div>
+                    <h3>Class Reunion</h3>
+                    <p>Celebrate our journey together and create new memories with fellow alumni.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="register" class="section" style="background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary) 100%);">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">Member Registration</h2>
+            <p style="text-align: center; color: white; max-width: 700px; margin: 0 auto 2rem; font-size: 1.1rem;">
+                Join the official ASSA 2006 database! Register to stay connected with classmates and receive updates about events and initiatives.
+            </p>
+            <div style="max-width: 600px; margin: 0 auto; background: white; padding: 2.5rem; border-radius: 15px; box-shadow: 0 10px 40px rgba(0,0,0,0.2);">
+                <form id="registrationForm">
+                    <div style="margin-bottom: 1.5rem;">
+                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--primary);">Full Name *</label>
+                        <input type="text" required style="width: 100%; padding: 0.8rem; border: 2px solid #e5e7eb; border-radius: 8px; font-size: 1rem;">
+                    </div>
+                    <div style="margin-bottom: 1.5rem;">
+                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--primary);">Email Address *</label>
+                        <input type="email" required style="width: 100%; padding: 0.8rem; border: 2px solid #e5e7eb; border-radius: 8px; font-size: 1rem;">
+                    </div>
+                    <div style="margin-bottom: 1.5rem;">
+                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--primary);">Phone Number *</label>
+                        <input type="tel" required style="width: 100%; padding: 0.8rem; border: 2px solid #e5e7eb; border-radius: 8px; font-size: 1rem;">
+                    </div>
+                    <div style="margin-bottom: 1.5rem;">
+                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--primary);">Current Occupation</label>
+                        <input type="text" style="width: 100%; padding: 0.8rem; border: 2px solid #e5e7eb; border-radius: 8px; font-size: 1rem;">
+                    </div>
+                    <div style="margin-bottom: 1.5rem;">
+                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--primary);">Current Location (City, State)</label>
+                        <input type="text" style="width: 100%; padding: 0.8rem; border: 2px solid #e5e7eb; border-radius: 8px; font-size: 1rem;">
+                    </div>
+                    <div style="margin-bottom: 1.5rem;">
+                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--primary);">Year of Graduation</label>
+                        <input type="text" value="2006" readonly style="width: 100%; padding: 0.8rem; border: 2px solid #e5e7eb; border-radius: 8px; font-size: 1rem; background: #f9fafb;">
+                    </div>
+                    <div style="margin-bottom: 2rem;">
+                        <label style="display: flex; align-items: center; cursor: pointer;">
+                            <input type="checkbox" required style="width: 18px; height: 18px; margin-right: 0.5rem;">
+                            <span style="font-size: 0.95rem; color: #4b5563;">I confirm that I graduated from Afiesere Secondary School in 2006</span>
+                        </label>
+                    </div>
+                    <button type="submit" class="cta-btn" style="width: 100%; padding: 1rem; font-size: 1.1rem;">
+                        Submit Registration
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
 
     <section id="contact" class="section">
         <div class="container">
             <h2 class="section-title">Get In Touch</h2>
-            <div style="background: var(--accent-light); padding: 2rem; border-radius: 15px; max-width: 600px; margin: 0 auto; text-align: center;">
-                <p style="margin-bottom: 1rem;"><strong>Email:</strong> afiesereoldschool2006set@gmail.com</p>
-                <p><strong>WhatsApp:</strong> <a href="https://chat.whatsapp.com/GXCNK0RhZA82Z0qN8DleP" target="_blank" style="color: var(--primary-light); text-decoration: underline;">Join Our Group</a></p>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3>Contact Information</h3>
+                    <p><strong>Email:</strong> afiesereoldschool2006set@gmail.com</p>
+                    <p><strong>WhatsApp Group:</strong> <a href="https://chat.whatsapp.com/GXCNK0RhZA82Z0qN8DleP" target="_blank" style="color: var(--primary-light); text-decoration: underline;">Join Our Group</a></p>
+                    <h3 style="margin-top: 2rem;">Follow Us</h3>
+                    <p>Stay connected through our social media channels and WhatsApp group for the latest updates and alumni news.</p>
+                </div>
+                <form class="contact-form" id="contactForm">
+                    <input type="text" placeholder="Your Name" required>
+                    <input type="email" placeholder="Your Email" required>
+                    <textarea rows="5" placeholder="Your Message" required></textarea>
+                    <button type="submit">Send Message</button>
+                </form>
             </div>
         </div>
     </section>
 
     <footer>
-        <p>&copy; 2025 Afiesere Secondary School Alumni Association (ASSA) - Class of 2006. All rights reserved.</p>
+        <p>&copy; 2024 Afiesere Secondary School Alumni Association (ASSA) - Class of 2006. All rights reserved.</p>
     </footer>
 
     <script>
-        let currentModalType = '';
-        let duesData = [
-            { id: 1, memberName: 'Oghifo Matthew', month: 'January-December 2025', amount: 6000, paymentDate: '2025-01-01' },
-            { id: 2, memberName: 'Diemuodeke Erhuvwu', month: 'January-December 2025', amount: 6000, paymentDate: '2025-01-01' },
-            { id: 3, memberName: 'Sylvester Asore', month: 'January 2025-December 2026', amount: 12000, paymentDate: '2025-01-01' },
-            { id: 4, memberName: 'Mr Inweh Andrew', month: 'January-December 2025', amount: 6000, paymentDate: '2025-01-01' },
-            { id: 5, memberName: 'Rowena Erhinyodavwe', month: 'January-December 2025', amount: 6000, paymentDate: '2025-01-01' },
-            { id: 6, memberName: 'Mrs Dafiaghor Igho', month: 'January-February 2025', amount: 1000, paymentDate: '2025-01-01' },
-            { id: 7, memberName: 'Asama Joshua', month: 'January-December 2025', amount: 6000, paymentDate: '2025-01-01' },
-            { id: 8, memberName: 'Mr Eguono Robinson', month: 'January-December 2025', amount: 6000, paymentDate: '2025-01-01' },
-            { id: 9, memberName: 'Mr Solomon Okpokpotohor', month: 'January 2025', amount: 500, paymentDate: '2025-01-01' },
-            { id: 10, memberName: 'Mr Destiny Emurotu', month: 'January-December 2025', amount: 6000, paymentDate: '2025-01-01' }
-        ];
-
-        let funeralData = [
-            { id: 1, memberName: 'Oghifo Matthew', contribution: 'Mr. Aghogho Owhonigho Mother Funeral', amount: 5000, paymentDate: '2025-01-15' },
-            { id: 2, memberName: 'Joseph Armstrong', contribution: 'Mr. Aghogho Owhonigho Mother Funeral', amount: 1000, paymentDate: '2025-01-15' },
-            { id: 3, memberName: 'Judith Phillips', contribution: 'Mr. Aghogho Owhonigho Mother Funeral', amount: 2000, paymentDate: '2025-01-15' },
-            { id: 4, memberName: 'Asore Sylvester', contribution: 'Mr. Aghogho Owhonigho Mother Funeral', amount: 5000, paymentDate: '2025-01-15' },
-            { id: 5, memberName: 'Destiny Emurotu', contribution: 'Mr. Aghogho Owhonigho Mother Funeral', amount: 5000, paymentDate: '2025-01-15' },
-            { id: 6, memberName: 'Bright Edogbo', contribution: 'Mr. Aghogho Owhonigho Mother Funeral', amount: 2000, paymentDate: '2025-01-15' },
-            { id: 7, memberName: 'Diemuodeke Kate', contribution: 'Mr. Aghogho Owhonigho Mother Funeral', amount: 3000, paymentDate: '2025-01-15' },
-            { id: 8, memberName: 'Rowena Erhinyodavwe', contribution: 'Mr. Aghogho Owhonigho Mother Funeral', amount: 3000, paymentDate: '2025-01-15' },
-            { id: 9, memberName: 'Ochuko Blessing', contribution: 'Mr. Aghogho Owhonigho Mother Funeral', amount: 2000, paymentDate: '2025-01-15' }
-        ];
-
-        let welfareData = [];
-
-        function renderTable(data, type) {
-            let html = '';
-            if (data.length === 0) {
-                html = `<tr><td colspan="5" class="empty-state">No records found</td></tr>`;
-            } else {
-                data.forEach(record => {
-                    if (type === 'dues') {
-                        html += `<tr>
-                            <td>${record.memberName}</td>
-                            <td>${record.month}</td>
-                            <td>₦${record.amount.toLocaleString()}</td>
-                            <td>${new Date(record.paymentDate).toLocaleDateString()}</td>
-                            <td><button class="delete-btn" onclick="deleteRecord(${record.id}, '${type}')">Delete</button></td>
-                        </tr>`;
-                    } else if (type === 'funeral') {
-                        html += `<tr>
-                            <td>${record.memberName}</td>
-                            <td>${record.contribution}</td>
-                            <td>₦${record.amount.toLocaleString()}</td>
-                            <td>${new Date(record.paymentDate).toLocaleDateString()}</td>
-                            <td><button class="delete-btn" onclick="deleteRecord(${record.id}, '${type}')">Delete</button></td>
-                        </tr>`;
-                    } else {
-                        html += `<tr>
-                            <td>${record.memberName}</td>
-                            <td>${record.contribution}</td>
-                            <td>₦${record.amount.toLocaleString()}</td>
-                            <td>${new Date(record.paymentDate).toLocaleDateString()}</td>
-                            <td><button class="delete-btn" onclick="deleteRecord(${record.id}, '${type}')">Delete</button></td>
-                        </tr>`;
-                    }
-                });
-            }
+        // Preload images with retry logic
+        function loadImage(img) {
+            const src = img.getAttribute('src');
+            if (!src) return;
             
-            if (type === 'dues') document.getElementById('duesBody').innerHTML = html;
-            else if (type === 'funeral') document.getElementById('funeralBody').innerHTML = html;
-            else document.getElementById('welfareBody').innerHTML = html;
-        }
-
-        function updateStats() {
-            const duesTotal = duesData.reduce((sum, r) => sum + r.amount, 0);
-            const funeralTotal = funeralData.reduce((sum, r) => sum + r.amount, 0);
-            const welfareTotal = welfareData.reduce((sum, r) => sum + r.amount, 0);
-
-            document.getElementById('duesTotal').textContent = '₦' + duesTotal.toLocaleString();
-            document.getElementById('duesCount').textContent = duesData.length;
-            document.getElementById('funeralTotal').textContent = '₦' + funeralTotal.toLocaleString();
-            document.getElementById('funeralCount').textContent = funeralData.length;
-            document.getElementById('welfareTotal').textContent = '₦' + welfareTotal.toLocaleString();
-            document.getElementById('welfareCount').textContent = welfareData.length;
-        }
-
-        function openModal(type) {
-            currentModalType = type;
-            const modal = document.getElementById('recordModal');
-            const monthGroup = document.getElementById('monthGroup');
-            const contributionGroup = document.getElementById('contributionGroup');
-            const form = document.getElementById('recordForm');
+            const testImg = new Image();
+            testImg.crossOrigin = "anonymous";
             
-            form.reset();
-            modal.classList.add('active');
-
-            if (type === 'dues') {
-                document.getElementById('modalTitle').textContent = 'Add Monthly Due Record';
-                monthGroup.style.display = 'block';
-                contributionGroup.style.display = 'none';
-            } else {
-                document.getElementById('modalTitle').textContent = type === 'funeral' ? 'Add Funeral/Marriage Record' : 'Add Welfare Record';
-                monthGroup.style.display = 'none';
-                contributionGroup.style.display = 'block';
-            }
-        }
-
-        function closeModal() {
-            document.getElementById('recordModal').classList.remove('active');
-        }
-
-        function handleAddRecord(e) {
-            e.preventDefault();
-            const newRecord = {
-                id: Date.now(),
-                memberName: document.getElementById('memberName').value,
-                month: document.getElementById('month').value,
-                contribution: document.getElementById('contribution').value,
-                amount: parseFloat(document.getElementById('amount').value),
-                paymentDate: document.getElementById('paymentDate').value
+            testImg.onload = function() {
+                img.style.display = 'block';
+                console.log('Image loaded:', src);
             };
-
-            if (currentModalType === 'dues') {
-                duesData.push(newRecord);
-                renderTable(duesData, 'dues');
-            } else if (currentModalType === 'funeral') {
-                funeralData.push(newRecord);
-                renderTable(funeralData, 'funeral');
-            } else {
-                welfareData.push(newRecord);
-                renderTable(welfareData, 'welfare');
-            }
-
-            updateStats();
-            closeModal();
-        }
-
-        function deleteRecord(id, type) {
-            if (confirm('Are you sure you want to delete this record?')) {
-                if (type === 'dues') {
-                    duesData = duesData.filter(r => r.id !== id);
-                    renderTable(duesData, 'dues');
-                } else if (type === 'funeral') {
-                    funeralData = funeralData.filter(r => r.id !== id);
-                    renderTable(funeralData, 'funeral');
+            
+            testImg.onerror = function() {
+                console.log('Image failed to load:', src);
+                // Try alternative URL format
+                if (src.includes('raw.githubusercontent.com')) {
+                    const altSrc = src.replace('raw.githubusercontent.com', 'github.com').replace('/29766f41904d9771f6467926028fc7981aedb6cc/', '/raw/29766f41904d9771f6467926028fc7981aedb6cc/');
+                    testImg.src = altSrc;
                 } else {
-                    welfareData = welfareData.filter(r => r.id !== id);
-                    renderTable(welfareData, 'welfare');
+                    img.onerror();
                 }
-                updateStats();
-            }
+            };
+            
+            testImg.src = src;
         }
 
-        function filterTable(searchTerm, dateFilter, type) {
-            let data = type === 'dues' ? duesData : type === 'funeral' ? funeralData : welfareData;
-            let filtered = data.filter(record => {
-                const nameMatch = record.memberName.toLowerCase().includes(searchTerm.toLowerCase());
-                const dateMatch = !dateFilter || record.paymentDate === dateFilter;
-                return nameMatch && dateMatch;
-            });
-            renderTable(filtered, type);
-        }
-
-        document.getElementById('duesSearch').addEventListener('input', (e) => {
-            const date = document.getElementById('duesDate').value;
-            filterTable(e.target.value, date, 'dues');
-        });
-
-        document.getElementById('duesDate').addEventListener('change', (e) => {
-            const search = document.getElementById('duesSearch').value;
-            filterTable(search, e.target.value, 'dues');
-        });
-
-        document.getElementById('funeralSearch').addEventListener('input', (e) => {
-            const date = document.getElementById('funeralDate').value;
-            filterTable(e.target.value, date, 'funeral');
-        });
-
-        document.getElementById('funeralDate').addEventListener('change', (e) => {
-            const search = document.getElementById('funeralSearch').value;
-            filterTable(search, e.target.value, 'funeral');
-        });
-
-        document.getElementById('welfareSearch').addEventListener('input', (e) => {
-            const date = document.getElementById('welfareDate').value;
-            filterTable(e.target.value, date, 'welfare');
-        });
-
-        document.getElementById('welfareDate').addEventListener('change', (e) => {
-            const search = document.getElementById('welfareSearch').value;
-            filterTable(search, e.target.value, 'welfare');
+        // Load all images on page load
+        window.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('img').forEach(loadImage);
         });
 
         function toggleMenu() {
@@ -1049,7 +714,6 @@
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                closeMenu();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
                     target.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -1057,12 +721,37 @@
             });
         });
 
-        // Initialize on page load
-        window.addEventListener('load', () => {
-            renderTable(duesData, 'dues');
-            renderTable(funeralData, 'funeral');
-            renderTable(welfareData, 'welfare');
-            updateStats();
+        const registrationForm = document.getElementById('registrationForm');
+        registrationForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const data = {
+                fullName: registrationForm.elements[0].value,
+                email: registrationForm.elements[1].value,
+                phone: registrationForm.elements[2].value,
+                occupation: registrationForm.elements[3].value,
+                location: registrationForm.elements[4].value,
+                graduationYear: '2006',
+                timestamp: new Date().toISOString()
+            };
+
+            const existingData = JSON.parse(localStorage.getItem('assaRegistrations') || '[]');
+            existingData.push(data);
+            localStorage.setItem('assaRegistrations', JSON.stringify(existingData));
+
+            alert('Registration successful! Welcome to the ASSA 2006 database. You will receive updates via email and WhatsApp.');
+            registrationForm.reset();
+            
+            if(confirm('Would you like to join our WhatsApp group now?')) {
+                window.open('https://chat.whatsapp.com/GXCNK0RhZA82Z0qN8DleP', '_blank');
+            }
+        });
+
+        const contactForm = document.getElementById('contactForm');
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! We will get back to you soon.');
+            contactForm.reset();
         });
     </script>
 </body>
