@@ -71,6 +71,7 @@
             color: white;
             text-decoration: none;
             transition: color 0.3s;
+            font-size: 0.95rem;
         }
 
         .nav-links a:hover {
@@ -93,15 +94,17 @@
 
         .hero {
             margin-top: 80px;
-            height: 100vh;
+            min-height: 100vh;
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 50%, var(--accent) 100%);
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             text-align: center;
             color: white;
             position: relative;
             overflow: hidden;
+            padding: 2rem;
         }
 
         .hero::before {
@@ -111,18 +114,29 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0,0,0,0.3);
+            background: rgba(0,0,0,0.2);
         }
 
         .hero-content {
             position: relative;
             z-index: 1;
-            padding: 2rem;
+            max-width: 900px;
+        }
+
+        .hero-badge {
+            width: 120px;
+            height: 140px;
+            border-radius: 10px;
+            margin: 0 auto 2rem;
+            border: 5px solid white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            object-fit: cover;
         }
 
         .hero h1 {
-            font-size: 3.5rem;
+            font-size: clamp(1.8rem, 5vw, 3.5rem);
             margin-bottom: 1rem;
+            line-height: 1.2;
         }
 
         .rainbow-title {
@@ -141,32 +155,68 @@
         }
 
         .hero p {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
+            font-size: clamp(1rem, 2vw, 1.5rem);
+            margin: 1rem 0;
         }
 
-        .cta-btn {
-            display: inline-block;
-            background: white;
-            color: var(--primary);
-            padding: 1rem 2.5rem;
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .cta-btn, .secondary-btn {
+            padding: 0.75rem 2rem;
             border-radius: 50px;
             text-decoration: none;
             font-weight: bold;
-            margin-top: 2rem;
             transition: transform 0.3s, box-shadow 0.3s;
             border: none;
             font-size: 1rem;
             cursor: pointer;
         }
 
-        .cta-btn:hover {
+        .cta-btn {
+            background: white;
+            color: var(--primary);
+        }
+
+        .secondary-btn {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 2px solid white;
+        }
+
+        .cta-btn:hover, .secondary-btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 10px 25px rgba(0,0,0,0.2);
         }
 
+        .mission-vision {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 3rem;
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .mission-vision div h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .mission-vision div p {
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+
         .section {
-            padding: 5rem 2rem;
+            padding: 4rem 2rem;
         }
 
         .container {
@@ -181,40 +231,77 @@
             margin-bottom: 3rem;
         }
 
-        .payments-section {
-            background: #f9fafb;
+        .payments-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
         }
 
-        .payments-header {
+        .payment-category {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .payment-header {
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
             color: white;
-            padding: 2rem;
-            border-radius: 15px;
-            margin-bottom: 2rem;
+            padding: 1.5rem;
+        }
+
+        .payment-header h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .payment-controls {
+            padding: 1.5rem;
+            background: var(--accent-light);
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 1rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .search-box, .date-filter, .add-btn {
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+
+        .search-box, .date-filter {
+            border: 1px solid #ddd;
+        }
+
+        .add-btn {
+            background: var(--primary);
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .add-btn:hover {
+            background: var(--primary-light);
         }
 
         .payments-table {
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            margin-bottom: 2rem;
-        }
-
-        .payments-table table {
             width: 100%;
             border-collapse: collapse;
         }
 
         .payments-table thead {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-            color: white;
+            background: var(--accent-light);
         }
 
         .payments-table th {
             padding: 1rem;
             text-align: left;
             font-weight: 600;
+            color: var(--primary);
+            border-bottom: 2px solid var(--primary);
         }
 
         .payments-table td {
@@ -223,27 +310,163 @@
         }
 
         .payments-table tbody tr:hover {
-            background: #f9fafb;
+            background: var(--accent-light);
         }
 
-        .fade-in {
-            animation: fadeIn 1s ease-in;
+        .delete-btn {
+            background: #dc2626;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+            font-size: 0.85rem;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        .delete-btn:hover {
+            background: #991b1b;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            border-left: 4px solid var(--primary);
+        }
+
+        .stat-card p:first-child {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-card p:last-child {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            backdrop-filter: blur(4px);
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-header h2 {
+            color: var(--primary);
+            font-size: 1.5rem;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 0.9rem;
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 0.9rem;
+        }
+
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(22, 101, 52, 0.1);
+        }
+
+        .form-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .form-buttons button {
+            flex: 1;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .submit-btn {
+            background: var(--primary);
+            color: white;
+        }
+
+        .submit-btn:hover {
+            background: var(--primary-light);
+        }
+
+        .cancel-btn {
+            background: #e5e7eb;
+            color: #333;
+        }
+
+        .cancel-btn:hover {
+            background: #d1d5db;
         }
 
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 1.5rem;
-        }
-
-        .gallery-featured {
-            grid-column: span 2;
-            height: 350px;
         }
 
         .gallery-item {
@@ -272,25 +495,23 @@
             display: none;
             position: fixed;
             z-index: 2000;
-            padding-top: 50px;
             left: 0;
             top: 0;
             width: 100%;
             height: 100%;
             background-color: rgba(0,0,0,0.9);
-            align-items: center;
-            justify-content: center;
         }
 
         .gallery-modal.active {
             display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .gallery-modal-content {
             position: relative;
             max-width: 90%;
             max-height: 90vh;
-            animation: slideIn 0.3s ease-in-out;
         }
 
         .gallery-modal img {
@@ -306,7 +527,8 @@
             font-size: 40px;
             color: white;
             cursor: pointer;
-            z-index: 2001;
+            background: none;
+            border: none;
         }
 
         .gallery-modal-nav {
@@ -317,7 +539,8 @@
             color: white;
             cursor: pointer;
             padding: 20px;
-            user-select: none;
+            background: none;
+            border: none;
         }
 
         .gallery-modal-prev {
@@ -328,21 +551,23 @@
             right: 20px;
         }
 
-        @keyframes slideIn {
-            from { transform: scale(0.8); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
-        }
-
         footer {
             background: var(--primary);
             color: white;
             text-align: center;
             padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 3rem;
+            color: #666;
         }
 
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2rem; }
-            .nav-links { gap: 1rem; font-size: 0.9rem; display: none; }
+            .hero h1 { font-size: 1.8rem; }
+            .nav-links { display: none; gap: 1rem; font-size: 0.9rem; }
             
             .hamburger {
                 display: flex;
@@ -360,12 +585,33 @@
                 box-shadow: 0 5px 10px rgba(0,0,0,0.2);
             }
 
-            .gallery-featured {
-                grid-column: span 1;
+            .mission-vision {
+                grid-template-columns: 1fr;
+            }
+
+            .payment-controls {
+                grid-template-columns: 1fr;
             }
 
             .payments-table {
-                font-size: 0.9rem;
+                font-size: 0.85rem;
+            }
+
+            .payments-table th, .payments-table td {
+                padding: 0.75rem 0.5rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .cta-btn, .secondary-btn {
+                width: 100%;
+            }
+
+            .modal-content {
+                width: 95%;
+                padding: 1.5rem;
             }
         }
     </style>
@@ -395,207 +641,399 @@
 
     <section id="home" class="hero">
         <div class="hero-content">
-            <img src="https://i.imgur.com/PbvLWnj.jpg" alt="ASSA Badge" style="width: 120px; height: 140px; border-radius: 10px; margin: 0 auto 2rem; display: block; border: 5px solid white; box-shadow: 0 10px 30px rgba(0,0,0,0.3); object-fit: cover;">
-            <h1 class="fade-in rainbow-title">Afiesere Secondary School Alumni Association</h1>
-            <p class="fade-in" style="animation-delay: 0.2s;">Class of 2006 - ASSA</p>
-            <p class="fade-in" style="animation-delay: 0.4s; font-size: 1.2rem; margin-top: 1rem;">Building Legacies, Strengthening Bonds</p>
-            <a href="#payments" class="cta-btn fade-in" style="animation-delay: 0.6s;">View Contributions</a>
-        </div>
-    </section>
+            <img src="https://i.imgur.com/PbvLWnj.jpg" alt="ASSA Badge" class="hero-badge">
+            <h1 class="rainbow-title">Afiesere Secondary School Alumni Association</h1>
+            <p style="font-size: 1.2rem; margin: 1rem 0;">Class of 2006 - ASSA</p>
+            <p>Building Legacies, Strengthening Bonds</p>
+            
+            <div class="mission-vision">
+                <div>
+                    <h3>🎯 Our Mission</h3>
+                    <p>To foster unity, support educational excellence, and create meaningful opportunities for our members and the school community while preserving the bonds formed during our school days.</p>
+                </div>
+                <div>
+                    <h3>🌟 Our Vision</h3>
+                    <p>To be a model alumni association that drives positive change, maintains lasting connections, and makes a lasting impact on our alma mater and society.</p>
+                </div>
+            </div>
 
-    <section id="about" class="section">
-        <div class="container">
-            <h2 class="section-title">About ASSA</h2>
-            <p style="text-align: center; max-width: 800px; margin: 0 auto 3rem;">
-                The Afiesere Secondary School Alumni Association (ASSA), Class of 2006, is a vibrant community of former students dedicated to preserving our shared heritage, supporting current students, and fostering lifelong connections among classmates.
-            </p>
-        </div>
-    </section>
-
-    <section id="committee" class="section" style="background: var(--accent-light);">
-        <div class="container">
-            <h2 class="section-title">Executive Committee</h2>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
-                <div style="background: white; border-radius: 15px; padding: 2rem; text-align: center; box-shadow: 0 5px 20px rgba(0,0,0,0.1); transition: transform 0.3s;">
-                    <img src="https://i.imgur.com/RipjCJ8.jpg" alt="PST Oghifo Matthew Emuejevoke" style="width: 100px; height: 130px; border-radius: 10px; margin: 0 auto 1rem; display: block; object-fit: cover; border: 3px solid var(--primary);">
-                    <h3>PST Oghifo Matthew Emuejevoke</h3>
-                    <p style="color: var(--primary); font-weight: bold; margin-top: 0.5rem;">Interim President</p>
-                </div>
-                <div style="background: white; border-radius: 15px; padding: 2rem; text-align: center; box-shadow: 0 5px 20px rgba(0,0,0,0.1); transition: transform 0.3s;">
-                    <img src="https://i.imgur.com/kr4UiVy.jpg" alt="Obukohwo Endurance Judith" style="width: 100px; height: 130px; border-radius: 10px; margin: 0 auto 1rem; display: block; object-fit: cover; border: 3px solid var(--primary);">
-                    <h3>Obukohwo Endurance Judith</h3>
-                    <p style="color: var(--primary); font-weight: bold; margin-top: 0.5rem;">Interim Treasurer</p>
-                </div>
-                <div style="background: white; border-radius: 15px; padding: 2rem; text-align: center; box-shadow: 0 5px 20px rgba(0,0,0,0.1); transition: transform 0.3s;">
-                    <img src="https://i.imgur.com/xwVYy8J.jpg" alt="Emurotu O. Destiny" style="width: 100px; height: 130px; border-radius: 10px; margin: 0 auto 1rem; display: block; object-fit: cover; border: 3px solid var(--primary);">
-                    <h3>Emurotu O. Destiny</h3>
-                    <p style="color: var(--primary); font-weight: bold; margin-top: 0.5rem;">Interim Secretary</p>
-                </div>
-                <div style="background: white; border-radius: 15px; padding: 2rem; text-align: center; box-shadow: 0 5px 20px rgba(0,0,0,0.1); transition: transform 0.3s;">
-                    <img src="https://i.imgur.com/oDr3swN.jpg" alt="Happy Igho Umukoro" style="width: 100px; height: 130px; border-radius: 10px; margin: 0 auto 1rem; display: block; object-fit: cover; border: 3px solid var(--primary);">
-                    <h3>Happy Igho Umukoro</h3>
-                    <p style="color: var(--primary); font-weight: bold; margin-top: 0.5rem;">Member</p>
-                </div>
-                <div style="background: white; border-radius: 15px; padding: 2rem; text-align: center; box-shadow: 0 5px 20px rgba(0,0,0,0.1); transition: transform 0.3s;">
-                    <img src="https://i.imgur.com/9AgyTpe.jpg" alt="Sylvester Asore" style="width: 100px; height: 130px; border-radius: 10px; margin: 0 auto 1rem; display: block; object-fit: cover; border: 3px solid var(--primary);">
-                    <h3>Sylvester Asore</h3>
-                    <p style="color: var(--primary); font-weight: bold; margin-top: 0.5rem;">Member</p>
-                </div>
-                <div style="background: white; border-radius: 15px; padding: 2rem; text-align: center; box-shadow: 0 5px 20px rgba(0,0,0,0.1); transition: transform 0.3s;">
-                    <img src="https://i.imgur.com/MM5b0Ly.jpg" alt="Diemuodeke Erhuvwu Kate" style="width: 100px; height: 130px; border-radius: 10px; margin: 0 auto 1rem; display: block; object-fit: cover; border: 3px solid var(--primary);">
-                    <h3>Diemuodeke Erhuvwu Kate</h3>
-                    <p style="color: var(--primary); font-weight: bold; margin-top: 0.5rem;">Member</p>
-                </div>
+            <div class="hero-buttons">
+                <a href="#payments" class="cta-btn">View Contributions</a>
+                <a href="#contact" class="secondary-btn">Join Our Database</a>
             </div>
         </div>
     </section>
 
-    <section id="gallery" class="section">
-        <div class="container">
-            <h2 class="section-title">Photo Gallery</h2>
-            <div class="gallery-grid">
-                <div class="gallery-item" onclick="openGalleryModal(0)"><img src="https://i.imgur.com/RlLHVLK.jpg" alt="ASSA Gallery"></div>
-                <div class="gallery-item" onclick="openGalleryModal(1)"><img src="https://i.imgur.com/wvp29GN.jpg" alt="ASSA Gallery"></div>
-                <div class="gallery-item" onclick="openGalleryModal(2)"><img src="https://i.imgur.com/X0YVzb9.jpg" alt="ASSA Gallery"></div>
-                <div class="gallery-item" onclick="openGalleryModal(3)"><img src="https://i.imgur.com/8kIddec.jpg" alt="ASSA Gallery"></div>
-                <div class="gallery-item" onclick="openGalleryModal(4)"><img src="https://i.imgur.com/OAAmGMs.jpg" alt="ASSA Gallery"></div>
-                <div class="gallery-item" onclick="openGalleryModal(5)"><img src="https://i.imgur.com/sqkMbem.jpg" alt="ASSA Gallery"></div>
-                <div class="gallery-item" onclick="openGalleryModal(6)"><img src="https://i.imgur.com/PEHORRg.jpg" alt="ASSA Gallery"></div>
-                <div class="gallery-item" onclick="openGalleryModal(7)"><img src="https://i.imgur.com/PR7YtN3.jpg" alt="ASSA Gallery"></div>
-                <div class="gallery-item" onclick="openGalleryModal(8)"><img src="https://i.imgur.com/RPilg2D.jpg" alt="ASSA Gallery"></div>
-                <div class="gallery-item gallery-featured" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; padding: 0.5rem; background: white; border-radius: 15px;">
-                    <img src="https://i.imgur.com/HiLEZte.jpg" alt="ASSA Gallery" onclick="openGalleryModal(9)" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px; cursor: pointer;">
-                    <img src="https://i.imgur.com/HnNtpqc.jpg" alt="ASSA Gallery" onclick="openGalleryModal(10)" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px; cursor: pointer;">
-                    <img src="https://i.imgur.com/LoCsyDu.jpg" alt="ASSA Gallery" onclick="openGalleryModal(11)" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px; cursor: pointer;">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="payments" class="section payments-section">
+    <section id="payments" class="section" style="background: var(--accent-light);">
         <div class="container">
             <h2 class="section-title">Contributions & Payments</h2>
-            <div class="payments-header">
-                <h3 style="margin-bottom: 1rem;">ASSA 2006 Contributions Tracker</h3>
-                <p>Track member contributions to Monthly Dues, Funeral, and General Welfare funds</p>
-            </div>
             
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin-bottom: 3rem;">
-                <div style="background: white; padding: 1.5rem; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-left: 4px solid var(--primary);">
-                    <p style="color: #666; font-size: 0.9rem; margin-bottom: 0.5rem;">Total Contributions</p>
-                    <p style="font-size: 1.8rem; font-weight: bold; color: var(--primary);">₦94,500</p>
-                </div>
-                <div style="background: white; padding: 1.5rem; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-left: 4px solid var(--primary-light);">
-                    <p style="color: #666; font-size: 0.9rem; margin-bottom: 0.5rem;">Active Contributors</p>
-                    <p style="font-size: 1.8rem; font-weight: bold; color: var(--primary);">19+</p>
-                </div>
-            </div>
+            <div class="payments-container">
+                <!-- Monthly Dues -->
+                <div class="payment-category">
+                    <div class="payment-header">
+                        <h3>📅 Monthly Dues</h3>
+                        <p>Regular membership contributions</p>
+                    </div>
+                    
+                    <div class="stats-grid" style="padding: 1.5rem;">
+                        <div class="stat-card">
+                            <p>Total Collected</p>
+                            <p id="duesTotal">₦62,000</p>
+                        </div>
+                        <div class="stat-card">
+                            <p>Contributors</p>
+                            <p id="duesCount">10</p>
+                        </div>
+                    </div>
 
-            <div class="payments-table">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Member Name</th>
-                            <th>Month/Contribution</th>
-                            <th>Amount</th>
-                            <th>Date</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>Oghifo Matthew</td><td>January-December 2025</td><td>₦6,000</td><td>01/01/2025</td></tr>
-                        <tr><td>Diemuodeke Erhuvwu</td><td>January-December 2025</td><td>₦6,000</td><td>01/01/2025</td></tr>
-                        <tr><td>Sylvester Asore</td><td>January 2025-December 2026</td><td>₦12,000</td><td>01/01/2025</td></tr>
-                        <tr><td>Mr Inweh Andrew (President)</td><td>January-December 2025</td><td>₦6,000</td><td>01/01/2025</td></tr>
-                        <tr><td>Rowena Erhinyodavwe</td><td>January-December (2 years)</td><td>₦6,000</td><td>01/01/2025</td></tr>
-                    </tbody>
-                </table>
-            </div>
+                    <div class="payment-controls">
+                        <input type="text" class="search-box" id="duesSearch" placeholder="Search member...">
+                        <input type="date" class="date-filter" id="duesDate">
+                        <button class="add-btn" onclick="openModal('dues')">+ Add Record</button>
+                    </div>
 
-            <div style="background: white; border-radius: 10px; padding: 1.5rem; border-left: 4px solid var(--primary);">
-                <h4 style="color: var(--primary); margin-bottom: 1rem;">Payment Information</h4>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
-                    <div><strong>Bank:</strong> UBA</div>
-                    <div><strong>Account:</strong> 2278735875</div>
-                    <div><strong>Name:</strong> Afiesere Old Class 2006 Set</div>
+                    <div style="overflow-x: auto;">
+                        <table class="payments-table">
+                            <thead>
+                                <tr>
+                                    <th>Member Name</th>
+                                    <th>Month/Period</th>
+                                    <th>Amount</th>
+                                    <th>Date</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="duesBody">
+                                <tr><td colspan="5" class="empty-state">No records yet</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Funeral/Marriage -->
+                <div class="payment-category">
+                    <div class="payment-header">
+                        <h3>💐 Funeral & Marriage Contributions</h3>
+                        <p>Special event support fund</p>
+                    </div>
+                    
+                    <div class="stats-grid" style="padding: 1.5rem;">
+                        <div class="stat-card">
+                            <p>Total Collected</p>
+                            <p id="funeralTotal">₦31,000</p>
+                        </div>
+                        <div class="stat-card">
+                            <p>Contributors</p>
+                            <p id="funeralCount">9</p>
+                        </div>
+                    </div>
+
+                    <div class="payment-controls">
+                        <input type="text" class="search-box" id="funeralSearch" placeholder="Search member...">
+                        <input type="date" class="date-filter" id="funeralDate">
+                        <button class="add-btn" onclick="openModal('funeral')">+ Add Record</button>
+                    </div>
+
+                    <div style="overflow-x: auto;">
+                        <table class="payments-table">
+                            <thead>
+                                <tr>
+                                    <th>Member Name</th>
+                                    <th>Contribution</th>
+                                    <th>Amount</th>
+                                    <th>Date</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="funeralBody">
+                                <tr><td colspan="5" class="empty-state">No records yet</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Welfare -->
+                <div class="payment-category">
+                    <div class="payment-header">
+                        <h3>❤️ General Welfare Donations</h3>
+                        <p>Community support and relief fund</p>
+                    </div>
+                    
+                    <div class="stats-grid" style="padding: 1.5rem;">
+                        <div class="stat-card">
+                            <p>Total Collected</p>
+                            <p id="welfareTotal">₦0</p>
+                        </div>
+                        <div class="stat-card">
+                            <p>Contributors</p>
+                            <p id="welfareCount">0</p>
+                        </div>
+                    </div>
+
+                    <div class="payment-controls">
+                        <input type="text" class="search-box" id="welfareSearch" placeholder="Search member...">
+                        <input type="date" class="date-filter" id="welfareDate">
+                        <button class="add-btn" onclick="openModal('welfare')">+ Add Record</button>
+                    </div>
+
+                    <div style="overflow-x: auto;">
+                        <table class="payments-table">
+                            <thead>
+                                <tr>
+                                    <th>Member Name</th>
+                                    <th>Description</th>
+                                    <th>Amount</th>
+                                    <th>Date</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="welfareBody">
+                                <tr><td colspan="5" class="empty-state">No records yet</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Add Record Modal -->
+    <div id="recordModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Add Record</h2>
+                <button class="close-btn" onclick="closeModal()">&times;</button>
+            </div>
+            <form id="recordForm" onsubmit="handleAddRecord(event)">
+                <div class="form-group">
+                    <label>Member Name *</label>
+                    <input type="text" id="memberName" required>
+                </div>
+                <div class="form-group" id="monthGroup">
+                    <label>Month/Period *</label>
+                    <input type="text" id="month" placeholder="e.g., January 2025">
+                </div>
+                <div class="form-group" id="contributionGroup" style="display: none;">
+                    <label>Contribution Description *</label>
+                    <input type="text" id="contribution" placeholder="e.g., Funeral, Marriage, Relief">
+                </div>
+                <div class="form-group">
+                    <label>Amount (₦) *</label>
+                    <input type="number" id="amount" min="0" step="0.01" required>
+                </div>
+                <div class="form-group">
+                    <label>Payment Date *</label>
+                    <input type="date" id="paymentDate" required>
+                </div>
+                <div class="form-buttons">
+                    <button type="submit" class="submit-btn">Add Record</button>
+                    <button type="button" class="cancel-btn" onclick="closeModal()">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
 
     <section id="contact" class="section">
         <div class="container">
             <h2 class="section-title">Get In Touch</h2>
-            <div style="background: var(--accent-light); padding: 2rem; border-radius: 15px; max-width: 600px; margin: 0 auto;">
-                <p><strong>Email:</strong> afiesereoldschool2006set@gmail.com</p>
-                <p style="margin-top: 1rem;"><strong>WhatsApp:</strong> <a href="https://chat.whatsapp.com/GXCNK0RhZA82Z0qN8DleP" target="_blank" style="color: var(--primary-light); text-decoration: underline;">Join Our Group</a></p>
+            <div style="background: var(--accent-light); padding: 2rem; border-radius: 15px; max-width: 600px; margin: 0 auto; text-align: center;">
+                <p style="margin-bottom: 1rem;"><strong>Email:</strong> afiesereoldschool2006set@gmail.com</p>
+                <p><strong>WhatsApp:</strong> <a href="https://chat.whatsapp.com/GXCNK0RhZA82Z0qN8DleP" target="_blank" style="color: var(--primary-light); text-decoration: underline;">Join Our Group</a></p>
             </div>
         </div>
     </section>
-
-    <div id="galleryModal" class="gallery-modal">
-        <span class="gallery-modal-close" onclick="closeGalleryModal()">&times;</span>
-        <span class="gallery-modal-nav gallery-modal-prev" onclick="prevGalleryImage()">&#10094;</span>
-        <div class="gallery-modal-content">
-            <img id="galleryModalImage" src="" alt="Gallery Image">
-        </div>
-        <span class="gallery-modal-nav gallery-modal-next" onclick="nextGalleryImage()">&#10095;</span>
-    </div>
 
     <footer>
         <p>&copy; 2025 Afiesere Secondary School Alumni Association (ASSA) - Class of 2006. All rights reserved.</p>
     </footer>
 
     <script>
-        const galleryImages = [
-            'https://i.imgur.com/RlLHVLK.jpg',
-            'https://i.imgur.com/wvp29GN.jpg',
-            'https://i.imgur.com/X0YVzb9.jpg',
-            'https://i.imgur.com/8kIddec.jpg',
-            'https://i.imgur.com/OAAmGMs.jpg',
-            'https://i.imgur.com/sqkMbem.jpg',
-            'https://i.imgur.com/PEHORRg.jpg',
-            'https://i.imgur.com/PR7YtN3.jpg',
-            'https://i.imgur.com/RPilg2D.jpg',
-            'https://i.imgur.com/HiLEZte.jpg',
-            'https://i.imgur.com/HnNtpqc.jpg',
-            'https://i.imgur.com/LoCsyDu.jpg'
+        let currentModalType = '';
+        let duesData = [
+            { id: 1, memberName: 'Oghifo Matthew', month: 'January-December 2025', amount: 6000, paymentDate: '2025-01-01' },
+            { id: 2, memberName: 'Diemuodeke Erhuvwu', month: 'January-December 2025', amount: 6000, paymentDate: '2025-01-01' },
+            { id: 3, memberName: 'Sylvester Asore', month: 'January 2025-December 2026', amount: 12000, paymentDate: '2025-01-01' },
+            { id: 4, memberName: 'Mr Inweh Andrew', month: 'January-December 2025', amount: 6000, paymentDate: '2025-01-01' },
+            { id: 5, memberName: 'Rowena Erhinyodavwe', month: 'January-December 2025', amount: 6000, paymentDate: '2025-01-01' },
+            { id: 6, memberName: 'Mrs Dafiaghor Igho', month: 'January-February 2025', amount: 1000, paymentDate: '2025-01-01' },
+            { id: 7, memberName: 'Asama Joshua', month: 'January-December 2025', amount: 6000, paymentDate: '2025-01-01' },
+            { id: 8, memberName: 'Mr Eguono Robinson', month: 'January-December 2025', amount: 6000, paymentDate: '2025-01-01' },
+            { id: 9, memberName: 'Mr Solomon Okpokpotohor', month: 'January 2025', amount: 500, paymentDate: '2025-01-01' },
+            { id: 10, memberName: 'Mr Destiny Emurotu', month: 'January-December 2025', amount: 6000, paymentDate: '2025-01-01' }
         ];
 
-        let currentGalleryIndex = 0;
+        let funeralData = [
+            { id: 1, memberName: 'Oghifo Matthew', contribution: 'Mr. Aghogho Owhonigho Mother Funeral', amount: 5000, paymentDate: '2025-01-15' },
+            { id: 2, memberName: 'Joseph Armstrong', contribution: 'Mr. Aghogho Owhonigho Mother Funeral', amount: 1000, paymentDate: '2025-01-15' },
+            { id: 3, memberName: 'Judith Phillips', contribution: 'Mr. Aghogho Owhonigho Mother Funeral', amount: 2000, paymentDate: '2025-01-15' },
+            { id: 4, memberName: 'Asore Sylvester', contribution: 'Mr. Aghogho Owhonigho Mother Funeral', amount: 5000, paymentDate: '2025-01-15' },
+            { id: 5, memberName: 'Destiny Emurotu', contribution: 'Mr. Aghogho Owhonigho Mother Funeral', amount: 5000, paymentDate: '2025-01-15' },
+            { id: 6, memberName: 'Bright Edogbo', contribution: 'Mr. Aghogho Owhonigho Mother Funeral', amount: 2000, paymentDate: '2025-01-15' },
+            { id: 7, memberName: 'Diemuodeke Kate', contribution: 'Mr. Aghogho Owhonigho Mother Funeral', amount: 3000, paymentDate: '2025-01-15' },
+            { id: 8, memberName: 'Rowena Erhinyodavwe', contribution: 'Mr. Aghogho Owhonigho Mother Funeral', amount: 3000, paymentDate: '2025-01-15' },
+            { id: 9, memberName: 'Ochuko Blessing', contribution: 'Mr. Aghogho Owhonigho Mother Funeral', amount: 2000, paymentDate: '2025-01-15' }
+        ];
 
-        function openGalleryModal(index) {
-            currentGalleryIndex = index;
-            const modal = document.getElementById('galleryModal');
-            const img = document.getElementById('galleryModalImage');
-            img.src = galleryImages[currentGalleryIndex];
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
+        let welfareData = [];
 
-        function closeGalleryModal() {
-            const modal = document.getElementById('galleryModal');
-            modal.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-
-        function nextGalleryImage() {
-            currentGalleryIndex = (currentGalleryIndex + 1) % galleryImages.length;
-            document.getElementById('galleryModalImage').src = galleryImages[currentGalleryIndex];
-        }
-
-        function prevGalleryImage() {
-            currentGalleryIndex = (currentGalleryIndex - 1 + galleryImages.length) % galleryImages.length;
-            document.getElementById('galleryModalImage').src = galleryImages[currentGalleryIndex];
-        }
-
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape') {
-                closeGalleryModal();
-            } else if (event.key === 'ArrowRight') {
-                nextGalleryImage();
-            } else if (event.key === 'ArrowLeft') {
-                prevGalleryImage();
+        function renderTable(data, type) {
+            let html = '';
+            if (data.length === 0) {
+                html = `<tr><td colspan="5" class="empty-state">No records found</td></tr>`;
+            } else {
+                data.forEach(record => {
+                    if (type === 'dues') {
+                        html += `<tr>
+                            <td>${record.memberName}</td>
+                            <td>${record.month}</td>
+                            <td>₦${record.amount.toLocaleString()}</td>
+                            <td>${new Date(record.paymentDate).toLocaleDateString()}</td>
+                            <td><button class="delete-btn" onclick="deleteRecord(${record.id}, '${type}')">Delete</button></td>
+                        </tr>`;
+                    } else if (type === 'funeral') {
+                        html += `<tr>
+                            <td>${record.memberName}</td>
+                            <td>${record.contribution}</td>
+                            <td>₦${record.amount.toLocaleString()}</td>
+                            <td>${new Date(record.paymentDate).toLocaleDateString()}</td>
+                            <td><button class="delete-btn" onclick="deleteRecord(${record.id}, '${type}')">Delete</button></td>
+                        </tr>`;
+                    } else {
+                        html += `<tr>
+                            <td>${record.memberName}</td>
+                            <td>${record.contribution}</td>
+                            <td>₦${record.amount.toLocaleString()}</td>
+                            <td>${new Date(record.paymentDate).toLocaleDateString()}</td>
+                            <td><button class="delete-btn" onclick="deleteRecord(${record.id}, '${type}')">Delete</button></td>
+                        </tr>`;
+                    }
+                });
             }
+            
+            if (type === 'dues') document.getElementById('duesBody').innerHTML = html;
+            else if (type === 'funeral') document.getElementById('funeralBody').innerHTML = html;
+            else document.getElementById('welfareBody').innerHTML = html;
+        }
+
+        function updateStats() {
+            const duesTotal = duesData.reduce((sum, r) => sum + r.amount, 0);
+            const funeralTotal = funeralData.reduce((sum, r) => sum + r.amount, 0);
+            const welfareTotal = welfareData.reduce((sum, r) => sum + r.amount, 0);
+
+            document.getElementById('duesTotal').textContent = '₦' + duesTotal.toLocaleString();
+            document.getElementById('duesCount').textContent = duesData.length;
+            document.getElementById('funeralTotal').textContent = '₦' + funeralTotal.toLocaleString();
+            document.getElementById('funeralCount').textContent = funeralData.length;
+            document.getElementById('welfareTotal').textContent = '₦' + welfareTotal.toLocaleString();
+            document.getElementById('welfareCount').textContent = welfareData.length;
+        }
+
+        function openModal(type) {
+            currentModalType = type;
+            const modal = document.getElementById('recordModal');
+            const monthGroup = document.getElementById('monthGroup');
+            const contributionGroup = document.getElementById('contributionGroup');
+            const form = document.getElementById('recordForm');
+            
+            form.reset();
+            modal.classList.add('active');
+
+            if (type === 'dues') {
+                document.getElementById('modalTitle').textContent = 'Add Monthly Due Record';
+                monthGroup.style.display = 'block';
+                contributionGroup.style.display = 'none';
+            } else {
+                document.getElementById('modalTitle').textContent = type === 'funeral' ? 'Add Funeral/Marriage Record' : 'Add Welfare Record';
+                monthGroup.style.display = 'none';
+                contributionGroup.style.display = 'block';
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('recordModal').classList.remove('active');
+        }
+
+        function handleAddRecord(e) {
+            e.preventDefault();
+            const newRecord = {
+                id: Date.now(),
+                memberName: document.getElementById('memberName').value,
+                month: document.getElementById('month').value,
+                contribution: document.getElementById('contribution').value,
+                amount: parseFloat(document.getElementById('amount').value),
+                paymentDate: document.getElementById('paymentDate').value
+            };
+
+            if (currentModalType === 'dues') {
+                duesData.push(newRecord);
+                renderTable(duesData, 'dues');
+            } else if (currentModalType === 'funeral') {
+                funeralData.push(newRecord);
+                renderTable(funeralData, 'funeral');
+            } else {
+                welfareData.push(newRecord);
+                renderTable(welfareData, 'welfare');
+            }
+
+            updateStats();
+            closeModal();
+        }
+
+        function deleteRecord(id, type) {
+            if (confirm('Are you sure you want to delete this record?')) {
+                if (type === 'dues') {
+                    duesData = duesData.filter(r => r.id !== id);
+                    renderTable(duesData, 'dues');
+                } else if (type === 'funeral') {
+                    funeralData = funeralData.filter(r => r.id !== id);
+                    renderTable(funeralData, 'funeral');
+                } else {
+                    welfareData = welfareData.filter(r => r.id !== id);
+                    renderTable(welfareData, 'welfare');
+                }
+                updateStats();
+            }
+        }
+
+        function filterTable(searchTerm, dateFilter, type) {
+            let data = type === 'dues' ? duesData : type === 'funeral' ? funeralData : welfareData;
+            let filtered = data.filter(record => {
+                const nameMatch = record.memberName.toLowerCase().includes(searchTerm.toLowerCase());
+                const dateMatch = !dateFilter || record.paymentDate === dateFilter;
+                return nameMatch && dateMatch;
+            });
+            renderTable(filtered, type);
+        }
+
+        document.getElementById('duesSearch').addEventListener('input', (e) => {
+            const date = document.getElementById('duesDate').value;
+            filterTable(e.target.value, date, 'dues');
+        });
+
+        document.getElementById('duesDate').addEventListener('change', (e) => {
+            const search = document.getElementById('duesSearch').value;
+            filterTable(search, e.target.value, 'dues');
+        });
+
+        document.getElementById('funeralSearch').addEventListener('input', (e) => {
+            const date = document.getElementById('funeralDate').value;
+            filterTable(e.target.value, date, 'funeral');
+        });
+
+        document.getElementById('funeralDate').addEventListener('change', (e) => {
+            const search = document.getElementById('funeralSearch').value;
+            filterTable(search, e.target.value, 'funeral');
+        });
+
+        document.getElementById('welfareSearch').addEventListener('input', (e) => {
+            const date = document.getElementById('welfareDate').value;
+            filterTable(e.target.value, date, 'welfare');
+        });
+
+        document.getElementById('welfareDate').addEventListener('change', (e) => {
+            const search = document.getElementById('welfareSearch').value;
+            filterTable(search, e.target.value, 'welfare');
         });
 
         function toggleMenu() {
@@ -611,11 +1049,20 @@
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
+                closeMenu();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
                     target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
             });
+        });
+
+        // Initialize on page load
+        window.addEventListener('load', () => {
+            renderTable(duesData, 'dues');
+            renderTable(funeralData, 'funeral');
+            renderTable(welfareData, 'welfare');
+            updateStats();
         });
     </script>
 </body>
